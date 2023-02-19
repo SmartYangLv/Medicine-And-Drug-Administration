@@ -20,7 +20,7 @@ namespace MedicineAdministration
             SqlCommand sqlCommand =new SqlCommand();
             sqlCommand.Connection = sqlConnection;
             sqlCommand.CommandText = $@"SELECT COUNT(1) FROM tb_User 
-             WHERE NO ='{this.txb_No .Text .Trim ()}' AND Password ='{this .txb_Password .Text .Trim ()}';";
+             WHERE NO ='{this.txb_No .Text .Trim ()}' AND Password =HASHBYTES('MD5','{this .txb_Password .Text .Trim ()}');";
             sqlConnection.Open();
             int rowCount=(int)sqlCommand.ExecuteScalar();
             sqlConnection.Close ();
