@@ -34,6 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txb_Password = new System.Windows.Forms.TextBox();
             this.SingUp = new System.Windows.Forms.Button();
+            this.Lab_No = new System.Windows.Forms.Label();
+            this.LabPaw = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -54,7 +56,7 @@
             this.label1.Location = new System.Drawing.Point(255, 142);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 16);
+            this.label1.Size = new System.Drawing.Size(72, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "账号：";
             // 
@@ -62,7 +64,7 @@
             // 
             this.txb_No.Location = new System.Drawing.Point(351, 132);
             this.txb_No.Name = "txb_No";
-            this.txb_No.Size = new System.Drawing.Size(197, 26);
+            this.txb_No.Size = new System.Drawing.Size(197, 30);
             this.txb_No.TabIndex = 2;
             // 
             // label2
@@ -70,7 +72,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(255, 234);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 16);
+            this.label2.Size = new System.Drawing.Size(72, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "密码：";
             // 
@@ -79,7 +81,7 @@
             this.txb_Password.Location = new System.Drawing.Point(351, 231);
             this.txb_Password.Name = "txb_Password";
             this.txb_Password.PasswordChar = '*';
-            this.txb_Password.Size = new System.Drawing.Size(197, 26);
+            this.txb_Password.Size = new System.Drawing.Size(197, 30);
             this.txb_Password.TabIndex = 4;
             // 
             // SingUp
@@ -92,11 +94,31 @@
             this.SingUp.UseVisualStyleBackColor = true;
             this.SingUp.Click += new System.EventHandler(this.SingUp_Click);
             // 
+            // Lab_No
+            // 
+            this.Lab_No.AutoSize = true;
+            this.Lab_No.ForeColor = System.Drawing.Color.Red;
+            this.Lab_No.Location = new System.Drawing.Point(554, 142);
+            this.Lab_No.Name = "Lab_No";
+            this.Lab_No.Size = new System.Drawing.Size(0, 20);
+            this.Lab_No.TabIndex = 6;
+            // 
+            // LabPaw
+            // 
+            this.LabPaw.AutoSize = true;
+            this.LabPaw.ForeColor = System.Drawing.Color.Red;
+            this.LabPaw.Location = new System.Drawing.Point(554, 241);
+            this.LabPaw.Name = "LabPaw";
+            this.LabPaw.Size = new System.Drawing.Size(0, 20);
+            this.LabPaw.TabIndex = 7;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(795, 508);
+            this.ClientSize = new System.Drawing.Size(813, 524);
+            this.Controls.Add(this.LabPaw);
+            this.Controls.Add(this.Lab_No);
             this.Controls.Add(this.SingUp);
             this.Controls.Add(this.txb_Password);
             this.Controls.Add(this.label2);
@@ -120,6 +142,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txb_Password;
         private System.Windows.Forms.Button SingUp;
+        private System.Windows.Forms.Label Lab_No;
+        private System.Windows.Forms.Label LabPaw;
     }
 }
 
