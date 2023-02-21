@@ -33,7 +33,7 @@
             this.txb_No = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txb_Password = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.SingUp = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -54,7 +54,7 @@
             this.label1.Location = new System.Drawing.Point(255, 142);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 20);
+            this.label1.Size = new System.Drawing.Size(58, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "账号：";
             // 
@@ -62,7 +62,7 @@
             // 
             this.txb_No.Location = new System.Drawing.Point(351, 132);
             this.txb_No.Name = "txb_No";
-            this.txb_No.Size = new System.Drawing.Size(197, 30);
+            this.txb_No.Size = new System.Drawing.Size(197, 26);
             this.txb_No.TabIndex = 2;
             // 
             // label2
@@ -70,7 +70,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(255, 234);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 20);
+            this.label2.Size = new System.Drawing.Size(58, 16);
             this.label2.TabIndex = 3;
             this.label2.Text = "密码：";
             // 
@@ -79,24 +79,25 @@
             this.txb_Password.Location = new System.Drawing.Point(351, 231);
             this.txb_Password.Name = "txb_Password";
             this.txb_Password.PasswordChar = '*';
-            this.txb_Password.Size = new System.Drawing.Size(197, 30);
+            this.txb_Password.Size = new System.Drawing.Size(197, 26);
             this.txb_Password.TabIndex = 4;
             // 
-            // button2
+            // SingUp
             // 
-            this.button2.Location = new System.Drawing.Point(439, 343);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(109, 45);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "注册";
-            this.button2.UseVisualStyleBackColor = true;
+            this.SingUp.Location = new System.Drawing.Point(472, 343);
+            this.SingUp.Name = "SingUp";
+            this.SingUp.Size = new System.Drawing.Size(109, 45);
+            this.SingUp.TabIndex = 5;
+            this.SingUp.Text = "注册";
+            this.SingUp.UseVisualStyleBackColor = true;
+            this.SingUp.Click += new System.EventHandler(this.SingUp_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(795, 508);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.SingUp);
             this.Controls.Add(this.txb_Password);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txb_No);
@@ -105,7 +106,7 @@
             this.Font = new System.Drawing.Font("楷体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "医药管理系统";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -118,7 +119,7 @@
         private System.Windows.Forms.TextBox txb_No;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txb_Password;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button SingUp;
     }
 }
 
