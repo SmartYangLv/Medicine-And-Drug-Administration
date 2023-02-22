@@ -40,6 +40,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.Txb_Department = new System.Windows.Forms.TextBox();
             this.txb_Birthday = new System.Windows.Forms.DateTimePicker();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.Txb_WorkTime = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
+            this.Txb_Salary = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -139,11 +144,58 @@
             this.txb_Birthday.Size = new System.Drawing.Size(190, 30);
             this.txb_Birthday.TabIndex = 12;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(440, 429);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 58);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "信息更改";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(167, 298);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(114, 20);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "工作日期：";
+            // 
+            // Txb_WorkTime
+            // 
+            this.Txb_WorkTime.Location = new System.Drawing.Point(287, 298);
+            this.Txb_WorkTime.Name = "Txb_WorkTime";
+            this.Txb_WorkTime.Size = new System.Drawing.Size(191, 30);
+            this.Txb_WorkTime.TabIndex = 15;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(514, 302);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(114, 20);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "基本工资：";
+            // 
+            // Txb_Salary
+            // 
+            this.Txb_Salary.Location = new System.Drawing.Point(630, 302);
+            this.Txb_Salary.Name = "Txb_Salary";
+            this.Txb_Salary.Size = new System.Drawing.Size(201, 30);
+            this.Txb_Salary.TabIndex = 17;
+            // 
             // PersonalInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1130, 577);
+            this.Controls.Add(this.Txb_Salary);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.Txb_WorkTime);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txb_Birthday);
             this.Controls.Add(this.Txb_Department);
             this.Controls.Add(this.label6);
@@ -180,5 +232,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox Txb_Department;
         private System.Windows.Forms.DateTimePicker txb_Birthday;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DateTimePicker Txb_WorkTime;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox Txb_Salary;
     }
 }

@@ -121,10 +121,6 @@ namespace MedicineAdministration
                 {
                     MessageBox.Show("注册成功");
                 }
-                else
-                {
-                    MessageBox.Show("注册失败");
-                }
             }
         }
     }
