@@ -52,8 +52,8 @@ namespace MedicineAdministration
                 if (rowCount == 1)
                 {
                     //MessageBox.Show("登录成功");
-                    PersonalInformation  personalInformation = new PersonalInformation(this.txb_No.Text .Trim ());
-                    personalInformation.Show();
+                    MedicineManagement medicineManagement = new MedicineManagement(this.txb_No.Text.Trim());
+                    medicineManagement.Show();
                     this.Hide  ();
                 }
                 else
@@ -120,6 +120,8 @@ namespace MedicineAdministration
                 if (rowCount == 1)
                 {
                     MessageBox.Show("注册成功");
+                    PersonalInformation personalInformation = new PersonalInformation(this.txb_No.Text.Trim());
+                    personalInformation.Show();
                 }
             }
         }

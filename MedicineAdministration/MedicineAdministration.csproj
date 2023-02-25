@@ -59,6 +59,12 @@
     <Compile Include="Login And SingUp.Designer.cs">
       <DependentUpon>Login And SingUp.cs</DependentUpon>
     </Compile>
+    <Compile Include="MedicineManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MedicineManagement.Designer.cs">
+      <DependentUpon>MedicineManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="PersonalInformation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Login And SingUp.resx">
       <DependentUpon>Login And SingUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MedicineManagement.resx">
+      <DependentUpon>MedicineManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PersonalInformation.resx">
       <DependentUpon>PersonalInformation.cs</DependentUpon>

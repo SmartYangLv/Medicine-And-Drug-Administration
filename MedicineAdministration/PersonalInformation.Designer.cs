@@ -190,7 +190,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1130, 577);
+            this.ClientSize = new System.Drawing.Size(1032, 527);
             this.Controls.Add(this.Txb_Salary);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.Txb_WorkTime);
