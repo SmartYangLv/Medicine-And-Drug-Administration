@@ -55,8 +55,11 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.Dgv_Medicine = new System.Windows.Forms.DataGridView();
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.个人信息ToolStripMenuItem = new System.Windows.Forms.ToolStripComboBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Medicine)).BeginInit();
+            this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -211,7 +214,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("楷体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox1.Location = new System.Drawing.Point(548, 43);
+            this.textBox1.Location = new System.Drawing.Point(463, 43);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(151, 34);
@@ -224,7 +227,7 @@
             this.textBox2.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.textBox2.Font = new System.Drawing.Font("楷体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox2.ForeColor = System.Drawing.Color.White;
-            this.textBox2.Location = new System.Drawing.Point(706, 43);
+            this.textBox2.Location = new System.Drawing.Point(621, 43);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(145, 34);
             this.textBox2.TabIndex = 2;
@@ -251,11 +254,12 @@
             this.button1.Text = "搜索";
             this.button1.UseMnemonic = false;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox3
             // 
             this.textBox3.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBox3.Location = new System.Drawing.Point(946, 141);
+            this.textBox3.Location = new System.Drawing.Point(851, 141);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(226, 30);
             this.textBox3.TabIndex = 5;
@@ -266,7 +270,7 @@
             // 
             this.textBox4.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.textBox4.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox4.Location = new System.Drawing.Point(1083, 177);
+            this.textBox4.Location = new System.Drawing.Point(988, 173);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(89, 30);
             this.textBox4.TabIndex = 6;
@@ -277,7 +281,7 @@
             // 
             this.textBox5.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.textBox5.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox5.Location = new System.Drawing.Point(926, 177);
+            this.textBox5.Location = new System.Drawing.Point(831, 173);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(151, 30);
             this.textBox5.TabIndex = 7;
@@ -287,7 +291,7 @@
             // textBox6
             // 
             this.textBox6.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBox6.Location = new System.Drawing.Point(757, 177);
+            this.textBox6.Location = new System.Drawing.Point(662, 173);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(163, 30);
             this.textBox6.TabIndex = 8;
@@ -302,14 +306,35 @@
             this.Dgv_Medicine.Name = "Dgv_Medicine";
             this.Dgv_Medicine.RowHeadersWidth = 51;
             this.Dgv_Medicine.RowTemplate.Height = 27;
-            this.Dgv_Medicine.Size = new System.Drawing.Size(988, 494);
+            this.Dgv_Medicine.Size = new System.Drawing.Size(893, 494);
             this.Dgv_Medicine.TabIndex = 9;
+            // 
+            // menuStrip2
+            // 
+            this.menuStrip2.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
+            this.menuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.个人信息ToolStripMenuItem});
+            this.menuStrip2.Location = new System.Drawing.Point(136, 9);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(113, 30);
+            this.menuStrip2.TabIndex = 10;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
+            // 个人信息ToolStripMenuItem
+            // 
+            this.个人信息ToolStripMenuItem.Font = new System.Drawing.Font("楷体", 10.8F, System.Drawing.FontStyle.Bold);
+            this.个人信息ToolStripMenuItem.Name = "个人信息ToolStripMenuItem";
+            this.个人信息ToolStripMenuItem.Size = new System.Drawing.Size(98, 26);
+            this.个人信息ToolStripMenuItem.Text = "个人信息";
+            this.个人信息ToolStripMenuItem.Click += new System.EventHandler(this.个人信息ToolStripMenuItem_Click);
             // 
             // MedicineManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1177, 734);
+            this.ClientSize = new System.Drawing.Size(1077, 734);
             this.Controls.Add(this.Dgv_Medicine);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox5);
@@ -320,6 +345,7 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip2);
             this.Font = new System.Drawing.Font("楷体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -329,6 +355,8 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Medicine)).EndInit();
+            this.menuStrip2.ResumeLayout(false);
+            this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -363,5 +391,7 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.DataGridView Dgv_Medicine;
+        private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.ToolStripComboBox 个人信息ToolStripMenuItem;
     }
 }
