@@ -46,7 +46,7 @@
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.采购退货ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退货审核ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Txb_MedNane = new System.Windows.Forms.TextBox();
+            this.Txb_PinYin = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.Dgv_Medicine = new System.Windows.Forms.DataGridView();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
@@ -59,6 +59,11 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.txb_Name = new System.Windows.Forms.TextBox();
+            this.txb_No = new System.Windows.Forms.TextBox();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Medicine)).BeginInit();
             this.menuStrip2.SuspendLayout();
@@ -89,7 +94,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(11, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(181, 734);
+            this.menuStrip1.Size = new System.Drawing.Size(181, 639);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -120,6 +125,7 @@
             this.采购入库ToolStripMenuItem.Name = "采购入库ToolStripMenuItem";
             this.采购入库ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.采购入库ToolStripMenuItem.Text = "采购入库";
+            this.采购入库ToolStripMenuItem.Click += new System.EventHandler(this.采购入库ToolStripMenuItem_Click);
             // 
             // 入库审核ToolStripMenuItem
             // 
@@ -213,24 +219,23 @@
             this.退货审核ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.退货审核ToolStripMenuItem.Text = "退货审核";
             // 
-            // Txb_MedNane
+            // Txb_PinYin
             // 
-            this.Txb_MedNane.ForeColor = System.Drawing.Color.Gray;
-            this.Txb_MedNane.Location = new System.Drawing.Point(184, 176);
-            this.Txb_MedNane.Name = "Txb_MedNane";
-            this.Txb_MedNane.Size = new System.Drawing.Size(160, 30);
-            this.Txb_MedNane.TabIndex = 3;
-            this.Txb_MedNane.Text = "药品名称";
+            this.Txb_PinYin.ForeColor = System.Drawing.Color.Black;
+            this.Txb_PinYin.Location = new System.Drawing.Point(184, 176);
+            this.Txb_PinYin.Name = "Txb_PinYin";
+            this.Txb_PinYin.Size = new System.Drawing.Size(160, 30);
+            this.Txb_PinYin.TabIndex = 3;
             // 
             // button1
             // 
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button1.Font = new System.Drawing.Font("楷体", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(350, 176);
+            this.button1.Location = new System.Drawing.Point(349, 92);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 30);
+            this.button1.Size = new System.Drawing.Size(131, 30);
             this.button1.TabIndex = 4;
-            this.button1.Text = "搜索";
+            this.button1.Text = "按编号搜索";
             this.button1.UseMnemonic = false;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -243,7 +248,7 @@
             this.Dgv_Medicine.Name = "Dgv_Medicine";
             this.Dgv_Medicine.RowHeadersWidth = 51;
             this.Dgv_Medicine.RowTemplate.Height = 27;
-            this.Dgv_Medicine.Size = new System.Drawing.Size(893, 431);
+            this.Dgv_Medicine.Size = new System.Drawing.Size(893, 338);
             this.Dgv_Medicine.TabIndex = 9;
             // 
             // menuStrip2
@@ -287,6 +292,7 @@
             this.button3.TabIndex = 12;
             this.button3.Text = "采购入库";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -306,7 +312,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(187, 34);
             this.button5.TabIndex = 14;
-            this.button5.Text = "库存预警短信设置";
+            this.button5.Text = "预警短信设置";
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -333,7 +339,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(581, 680);
+            this.button8.Location = new System.Drawing.Point(402, 585);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(131, 42);
             this.button8.TabIndex = 17;
@@ -341,11 +347,65 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(663, 585);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(120, 42);
+            this.button9.TabIndex = 18;
+            this.button9.Text = "忽略";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // txb_Name
+            // 
+            this.txb_Name.ForeColor = System.Drawing.Color.Black;
+            this.txb_Name.Location = new System.Drawing.Point(184, 136);
+            this.txb_Name.Name = "txb_Name";
+            this.txb_Name.Size = new System.Drawing.Size(159, 30);
+            this.txb_Name.TabIndex = 19;
+            // 
+            // txb_No
+            // 
+            this.txb_No.ForeColor = System.Drawing.Color.Black;
+            this.txb_No.Location = new System.Drawing.Point(184, 92);
+            this.txb_No.Name = "txb_No";
+            this.txb_No.Size = new System.Drawing.Size(159, 30);
+            this.txb_No.TabIndex = 20;
+            // 
+            // button10
+            // 
+            this.button10.Font = new System.Drawing.Font("楷体", 10.8F, System.Drawing.FontStyle.Bold);
+            this.button10.Location = new System.Drawing.Point(349, 136);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(131, 30);
+            this.button10.TabIndex = 21;
+            this.button10.Text = "按名称搜索";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button11
+            // 
+            this.button11.Font = new System.Drawing.Font("楷体", 10.8F, System.Drawing.FontStyle.Bold);
+            this.button11.ForeColor = System.Drawing.Color.Black;
+            this.button11.Location = new System.Drawing.Point(350, 176);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(130, 30);
+            this.button11.TabIndex = 22;
+            this.button11.Text = "按拼音搜索";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
             // MedicineManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1077, 734);
+            this.ClientSize = new System.Drawing.Size(1077, 639);
+            this.Controls.Add(this.button11);
+            this.Controls.Add(this.button10);
+            this.Controls.Add(this.txb_No);
+            this.Controls.Add(this.txb_Name);
+            this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -355,7 +415,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.Dgv_Medicine);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.Txb_MedNane);
+            this.Controls.Add(this.Txb_PinYin);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.menuStrip2);
             this.Font = new System.Drawing.Font("楷体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -394,7 +454,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem 采购退货ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退货审核ToolStripMenuItem;
-        private System.Windows.Forms.TextBox Txb_MedNane;
+        private System.Windows.Forms.TextBox Txb_PinYin;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView Dgv_Medicine;
         private System.Windows.Forms.MenuStrip menuStrip2;
@@ -407,5 +467,10 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.ToolStripMenuItem 个人信息ToolStripMenuItem;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.TextBox txb_Name;
+        private System.Windows.Forms.TextBox txb_No;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
     }
 }

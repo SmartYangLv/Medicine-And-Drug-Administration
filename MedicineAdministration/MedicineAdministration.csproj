@@ -73,6 +73,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseWarehousing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PurchaseWarehousing.Designer.cs">
+      <DependentUpon>PurchaseWarehousing.cs</DependentUpon>
+    </Compile>
     <Compile Include="SMS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="PurchaseWarehousing.resx">
+      <DependentUpon>PurchaseWarehousing.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SMS.resx">
       <DependentUpon>SMS.cs</DependentUpon>
     </EmbeddedResource>

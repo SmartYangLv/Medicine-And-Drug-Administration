@@ -19,6 +19,7 @@ namespace MedicineAdministration
         public SMS()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -112,6 +113,7 @@ namespace MedicineAdministration
                         strRet = "IP限制";
                         break;
                     default:
+                        MessageBox.Show("信息已成功发送");
                         strRet = "发送短信数量：" + result;
                         break;
                 }

@@ -18,6 +18,8 @@ namespace MedicineAdministration
 {
     public partial class MedicineManagement : Form
     {
+        private DataTable MedicineTable;
+        private DataView CourseViewByName;
         public string _No;
         public MedicineManagement()
         {
@@ -36,18 +38,23 @@ namespace MedicineAdministration
                 ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
             SqlCommand sqlCommand = new SqlCommand();
             sqlCommand.Connection = sqlConnection;
-            sqlCommand.CommandText = $@"SELECT No AS 编号,MedicineName AS 名称,MedicineClassify AS 分类
+            sqlCommand.CommandText = $@"SELECT No AS 编号,MedicineName AS 名称,PINYIN, MedicineClassify AS 分类
              ,Manufacturer AS 生产厂家,Specification 规格,InventoryQuantity AS 数量,Price AS 价格
              , iif (DATEDIFF(DAY,ExpirationTime,GETDATE())>-30,'忽略预警','1') AS 操作 FROM tb_Medicine  
               WHERE DATEDIFF (DAY ,ExpirationTime ,GETDATE ())>-30";
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
             sqlDataAdapter.SelectCommand = sqlCommand;
-            DataTable MedicineTable = new DataTable();
+            sqlDataAdapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            this.MedicineTable = new DataTable();
             sqlConnection.Open();
             sqlDataAdapter.Fill(MedicineTable);
             sqlConnection.Close();
+            this.CourseViewByName = new DataView();                                                         
+            this.CourseViewByName.Table = this.MedicineTable ;                                                 
+            this.CourseViewByName.Sort = "名称 ASC";
             this.Dgv_Medicine.Columns.Clear();
             this.Dgv_Medicine.DataSource = MedicineTable;
+            this.Dgv_Medicine.Columns["PINYIN"].Visible = false;
         }
         private void MedicineManagement_Load(object sender, EventArgs e)
         {
@@ -56,18 +63,23 @@ namespace MedicineAdministration
                 ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
             SqlCommand sqlCommand = new SqlCommand();
             sqlCommand.Connection = sqlConnection;
-            sqlCommand.CommandText = $@"SELECT No AS 编号,MedicineName AS 名称,MedicineClassify AS 分类
+            sqlCommand.CommandText = $@"SELECT No AS 编号,MedicineName AS 名称,PINYIN,MedicineClassify AS 分类
              ,Manufacturer AS 生产厂家,Specification 规格,InventoryQuantity AS 数量,Price AS 价格
              , iif (DATEDIFF(DAY,ExpirationTime,GETDATE())>-30,'忽略预警','1') AS 操作 FROM tb_Medicine  
               WHERE DATEDIFF (DAY ,ExpirationTime ,GETDATE ())>-30";
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
             sqlDataAdapter.SelectCommand = sqlCommand;
-            DataTable MedicineTable = new DataTable();
+            sqlDataAdapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            this.MedicineTable = new DataTable();
             sqlConnection.Open();
             sqlDataAdapter.Fill(MedicineTable);
             sqlConnection.Close();
+            this.CourseViewByName = new DataView();
+            this.CourseViewByName.Table = this.MedicineTable;
+            this.CourseViewByName.Sort = "名称 ASC";
             this.Dgv_Medicine.Columns.Clear();
             this.Dgv_Medicine.DataSource = MedicineTable;
+            this.Dgv_Medicine.Columns["PINYIN"].Visible = false;
         }
 
         private void 个人信息ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -79,24 +91,10 @@ namespace MedicineAdministration
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString =
-                ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
-            SqlCommand sqlCommand = new SqlCommand();
-            sqlCommand.Connection = sqlConnection;
-            sqlCommand.CommandText = $@"SELECT No AS 编号,MedicineName AS 名称,MedicineClassify AS 分类
-             ,Manufacturer AS 生产厂家,Specification 规格,InventoryQuantity AS 数量,Price AS 价格
-             , iif (DATEDIFF(DAY,ExpirationTime,GETDATE())>-30,'忽略预警','已忽略') AS 操作 FROM tb_Medicine  
-              WHERE MedicineName=@MedicineName;";
-            sqlCommand.Parameters.AddWithValue("@MedicineName", this.Txb_MedNane.Text.Trim());
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
-            sqlDataAdapter.SelectCommand = sqlCommand;
-            DataTable MedicineTable = new DataTable();
-            sqlConnection.Open();
-            sqlDataAdapter.Fill(MedicineTable);
-            sqlConnection.Close();
-            this.Dgv_Medicine.Columns.Clear();
-            this.Dgv_Medicine.DataSource = MedicineTable;
+            DataRow searchResultRow = this.MedicineTable .Rows.Find(this.txb_No.Text.Trim());            
+            DataTable searchResultTable = this.MedicineTable .Clone();                                         
+            searchResultTable.ImportRow(searchResultRow);                                                   
+            this.Dgv_Medicine.DataSource = searchResultTable;
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -105,45 +103,52 @@ namespace MedicineAdministration
 
         private void button8_Click(object sender, EventArgs e)
         {
-            string result=this.Dgv_Medicine .CurrentRow .Cells["操作"].Value .ToString ();
-            if(result == "忽略预警")
-            {
-                SqlConnection sqlConnection = new SqlConnection();
-                sqlConnection.ConnectionString =
-                    ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
-                SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.Connection = sqlConnection;
-                sqlCommand.CommandText =
-                       $@"UPDATE tb_Medicine
-                        SET ExpirationTime='{2099-10-10}'
-                        WHERE NO='{this.Dgv_Medicine.CurrentRow.Cells["编号"].Value.ToString()}'";
-                sqlConnection .Open ();
-                int row=sqlCommand .ExecuteNonQuery ();
-                sqlConnection.Close ();
-                if (row != 0)
-                {
-                    sqlCommand.CommandText =
-                        $@"INSERT INTO tb_Medicine1(No ,MedicineName ,MedicineClassify ,Manufacturer ,Specification,InventoryQuantity ,ExpirationTime,Price )
-                 VALUES(@No,@MedicineName,@MedicineClassify,@Manufacturer,@Specification,@InventoryQuantity,@ExpirationTime,@Price);";
-                    sqlCommand.Parameters.AddWithValue("@No", this.Dgv_Medicine.CurrentRow.Cells["编号"].Value.ToString());
-                        sqlCommand.Parameters.AddWithValue("@MedicineName", this.Dgv_Medicine.CurrentRow.Cells["名称"].Value.ToString());
-                        sqlCommand.Parameters.AddWithValue("@MedicineClassify", this.Dgv_Medicine.CurrentRow.Cells["分类"].Value.ToString());
-                        sqlCommand.Parameters.AddWithValue("@Manufacturer", this.Dgv_Medicine.CurrentRow.Cells["生产厂家"].Value.ToString());
-                        sqlCommand.Parameters.AddWithValue("@Specification", this.Dgv_Medicine.CurrentRow.Cells["规格"].Value.ToString());
-                        sqlCommand.Parameters.AddWithValue("@InventoryQuantity", this.Dgv_Medicine.CurrentRow.Cells["数量"].Value.ToString());
-                        sqlCommand.Parameters.AddWithValue("@ExpirationTime", "已忽略");
-                        sqlCommand.Parameters.AddWithValue("@Price", this.Dgv_Medicine.CurrentRow.Cells["价格"].Value.ToString());
-                    sqlConnection.Open();
-                    int row1 = sqlCommand.ExecuteNonQuery();
-                    sqlConnection.Close();
-                    MessageBox.Show("已忽略");
-                    this.LoadTable();
-                }
-            }
-            else
-            {
-                MessageBox.Show("发生错误！，请联系管理员");
-            }
+            SqlConnection sqlConnection = new SqlConnection();
+            sqlConnection.ConnectionString =
+                ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
+            SqlCommand insertcommand = new SqlCommand();
+            insertcommand.Connection = sqlConnection;
+            insertcommand.CommandText =
+                $@"INSERT tb_Medicine(No,MedicineName,MedicineClassify,Manufacturer,Specification,InventoryQuantity,Price )
+                     VALUES(@No,@MedicineName,@MedicineClassify,@Manufacturer,@Specification,@InventoryQuantity,@Price);";
+            insertcommand.Parameters.Add("@No", SqlDbType.Char, 10, "编号");
+            insertcommand.Parameters.Add("@MedicineName", SqlDbType.VarChar, 0, "名称");
+            insertcommand.Parameters.Add("@MedicineClassify", SqlDbType.VarChar, 0, "分类");
+            insertcommand.Parameters.Add("@Manufacturer", SqlDbType.VarChar, 0, "生产厂家");
+            insertcommand.Parameters.Add("@Specification", SqlDbType.VarChar, 0, "规格");
+            insertcommand.Parameters.Add("@InventoryQuantity", SqlDbType.Int, 0, "数量");
+            insertcommand.Parameters.Add("@Price", SqlDbType.Float , 0, "价格");
+            SqlCommand updatecommand=new SqlCommand();
+            updatecommand.Connection=sqlConnection;
+            updatecommand.CommandText =
+                $@"UPDATE tb_Medicine 
+                   SET No=@NewNo,MedicineName=@MedicineName,MedicineClassify=@MedicineClassify,Manufacturer=@Manufacturer,Specification=@Specification,
+                       InventoryQuantity=@InventoryQuantity,Price=@Price
+                       WHERE No=@OldNo;";
+            updatecommand.Parameters.Add("@NewNo", SqlDbType.Char,10, "编号");
+            updatecommand.Parameters.Add("@MedicineName", SqlDbType.VarChar, 0, "名称");
+            updatecommand.Parameters.Add("@MedicineClassify", SqlDbType.VarChar, 0, "分类");
+            updatecommand.Parameters.Add("@Manufacturer", SqlDbType.VarChar, 0, "生产厂家");
+            updatecommand.Parameters.Add("@Specification", SqlDbType.VarChar, 0, "规格");
+            updatecommand.Parameters.Add("@InventoryQuantity", SqlDbType.Int, 0, "数量");
+            //updatecommand.Parameters.Add("@ExpirationTime", SqlDbType.VarChar, 0, "ExpirationTime");
+            updatecommand.Parameters.Add("@Price", SqlDbType.Float, 0, "价格");
+            updatecommand.Parameters.Add("@OldNo", SqlDbType.Char, 10, "编号");
+            updatecommand.Parameters["@OldNo"].SourceVersion=DataRowVersion.Original;
+            SqlCommand deletecommand=new SqlCommand();
+            deletecommand .Connection=sqlConnection;
+            deletecommand.CommandText =
+                $@"DELETE tb_Medicine WHERE No=@No";
+            deletecommand.Parameters.Add("@No", SqlDbType.Char, 10, "编号");
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+            sqlDataAdapter.InsertCommand = insertcommand;
+            sqlDataAdapter.UpdateCommand = updatecommand;
+            sqlDataAdapter.DeleteCommand = deletecommand;
+            DataTable dataTable = (DataTable)this.Dgv_Medicine.DataSource;
+            sqlConnection .Open ();
+            int row = sqlDataAdapter.Update(dataTable);
+            sqlConnection.Close();
+            MessageBox.Show($"已更新{row }行");
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -191,6 +196,90 @@ namespace MedicineAdministration
         {
             SMS sMS = new SMS();
             sMS .Show ();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            string result = this.Dgv_Medicine.CurrentRow.Cells["操作"].Value.ToString();
+            {
+                if (result == "忽略预警")
+                {
+                    SqlConnection sqlConnection = new SqlConnection();
+                    sqlConnection.ConnectionString =
+                        ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
+                    SqlCommand sqlCommand = new SqlCommand();
+                    sqlCommand.Connection = sqlConnection;
+                    sqlCommand.CommandText =
+                           $@"UPDATE tb_Medicine
+                        SET ExpirationTime='{2099 - 10 - 10}'
+                        WHERE NO='{this.Dgv_Medicine.CurrentRow.Cells["编号"].Value.ToString()}'";
+                    sqlConnection.Open();
+                    int rowaffed = sqlCommand.ExecuteNonQuery();
+                    sqlConnection.Close();
+                    if (rowaffed != 0)
+                    {
+                        sqlCommand.CommandText =
+                            $@"INSERT INTO tb_Medicine1(No ,MedicineName ,MedicineClassify ,Manufacturer ,Specification,InventoryQuantity ,ExpirationTime,Price )
+                 VALUES(@No,@MedicineName,@MedicineClassify,@Manufacturer,@Specification,@InventoryQuantity,@ExpirationTime,@Price);";
+                        sqlCommand.Parameters.AddWithValue("@No", this.Dgv_Medicine.CurrentRow.Cells["编号"].Value.ToString());
+                        sqlCommand.Parameters.AddWithValue("@MedicineName", this.Dgv_Medicine.CurrentRow.Cells["名称"].Value.ToString());
+                        sqlCommand.Parameters.AddWithValue("@MedicineClassify", this.Dgv_Medicine.CurrentRow.Cells["分类"].Value.ToString());
+                        sqlCommand.Parameters.AddWithValue("@Manufacturer", this.Dgv_Medicine.CurrentRow.Cells["生产厂家"].Value.ToString());
+                        sqlCommand.Parameters.AddWithValue("@Specification", this.Dgv_Medicine.CurrentRow.Cells["规格"].Value.ToString());
+                        sqlCommand.Parameters.AddWithValue("@InventoryQuantity", this.Dgv_Medicine.CurrentRow.Cells["数量"].Value.ToString());
+                        sqlCommand.Parameters.AddWithValue("@ExpirationTime", "已忽略");
+                        sqlCommand.Parameters.AddWithValue("@Price", this.Dgv_Medicine.CurrentRow.Cells["价格"].Value.ToString());
+                        sqlConnection.Open();
+                        int row1 = sqlCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
+                        MessageBox.Show("已忽略");
+                        this.LoadTable();
+                    }
+                }
+
+                else
+                {
+                    MessageBox.Show("发生错误！，请联系管理员");
+                }
+            }
+        }
+
+        private void 采购入库ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PurchaseWarehousing purchaseWarehousing = new PurchaseWarehousing(this._No );
+            purchaseWarehousing .Show ();
+            this.Hide ();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            DataRowView[] searchResultRowViews =
+                this.CourseViewByName.FindRows(this.txb_Name.Text.Trim());                            
+            DataTable searchResultTable = this.MedicineTable .Clone();                                        
+            foreach (DataRowView dataRowView in searchResultRowViews)                                      
+            {
+                searchResultTable.ImportRow(dataRowView.Row);                                              
+            }
+            this.Dgv_Medicine.DataSource = searchResultTable;
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            DataRow[] searchResultRows =
+                this.MedicineTable.Select($"PINYIN LIKE '%{this.Txb_PinYin .Text.Trim()}%'");					//借助本窗体的课程数据表的方法Select，并提供与SQL类似的谓词表达式作为查询条件，根据拼音缩写进行模糊查询（仅支持%通配符）；查询将返回数据行数组；
+            DataTable searchResultTable = this.MedicineTable.Clone();                                         //借助本窗体的课程数据表的方法Clone，创建相同架构的空表，用于保存搜索结果所在数据行；
+            foreach (DataRow row in searchResultRows)                                                       //遍历搜索结果所在数据行数组；
+            {
+                searchResultTable.ImportRow(row);                                                           //数据行导入数据表；
+            }
+            this.Dgv_Medicine .DataSource = searchResultTable;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            PurchaseWarehousing purchaseWarehousing = new PurchaseWarehousing(this._No);
+            purchaseWarehousing.Show();
+            this.Hide();
         }
     }
 

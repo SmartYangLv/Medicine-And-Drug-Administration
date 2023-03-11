@@ -40,7 +40,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(159, 81);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 20);
+            this.label1.Size = new System.Drawing.Size(92, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "手机号码：";
             // 
@@ -49,7 +49,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(159, 158);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(114, 20);
+            this.label2.Size = new System.Drawing.Size(92, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "信息内容：";
             // 
@@ -57,8 +57,9 @@
             // 
             this.txt_Num.Location = new System.Drawing.Point(266, 78);
             this.txt_Num.Name = "txt_Num";
-            this.txt_Num.Size = new System.Drawing.Size(223, 30);
+            this.txt_Num.Size = new System.Drawing.Size(223, 26);
             this.txt_Num.TabIndex = 2;
+            this.txt_Num.Text = "19985099716";
             // 
             // textBox1
             // 
@@ -67,6 +68,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(332, 186);
             this.textBox1.TabIndex = 3;
+            this.textBox1.Text = "信息已发送，将提醒厂库管理员对即将过期药品进行处理！";
             // 
             // button1
             // 
@@ -80,7 +82,7 @@
             // 
             // SMS
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(680, 470);
             this.Controls.Add(this.button1);
@@ -89,7 +91,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("楷体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SMS";
             this.Text = "SMS";
             this.ResumeLayout(false);
