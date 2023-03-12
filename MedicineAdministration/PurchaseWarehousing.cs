@@ -42,7 +42,8 @@ namespace MedicineAdministration
             sqlCommand1.CommandText =
                 $@"SELECT * FROM tb_Unit";
             sqlCommand.CommandText =
-                 $@"SELECT No AS 编号,MedicineName AS 名称,MedicineClassify AS 分类,Manufacturer  AS 生产厂商 ,InventoryQuantity AS 现存数量,UnitNo FROM tb_Medicine";
+                 $@"SELECT No AS 编号,MedicineName AS 名称,MedicineClassify AS 分类,Manufacturer  AS 生产厂商 ,InventoryQuantity AS 现存数量,UnitNo 
+              FROM tb_Medicine ";
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
             sqlDataAdapter.SelectCommand = sqlCommand;
             sqlDataAdapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
@@ -91,13 +92,55 @@ namespace MedicineAdministration
         private void button1_Click(object sender, EventArgs e)
         {
             DataRowView[] searchResultRowViews =
-                this.CourseViewByName.FindRows(this.cbx_Name .Text.Trim());                            //借助本窗体的按名称排序的课程数据视图的方法FindRows，根据排序列（即课程名称）快速查找相应课程；由于该列并非主键，可能返回多行查询结果，故返回数据行视图数组；数据行视图数组不能直接作为数据源，需转为列表后方可作为数据源；
-            DataTable searchResultTable = this.dataTable.Clone();                                         //借助本窗体的课程数据表的方法Clone，创建相同架构的空表，用于保存搜索结果所在数据行；
-            foreach (DataRowView dataRowView in searchResultRowViews)                                       //遍历搜索结果所在数据行视图数组；
+                this.CourseViewByName.FindRows(this.cbx_Name .Text.Trim());                            
+            DataTable searchResultTable = this.dataTable.Clone();                                         
+            foreach (DataRowView dataRowView in searchResultRowViews)                                       
             {
-                searchResultTable.ImportRow(dataRowView.Row);                                               //通过每条数据行视图的属性Row获取相应的数据行，并导入数据表；
+                searchResultTable.ImportRow(dataRowView.Row);                                               
             }
             this.dgv_PurchaseTable .DataSource = searchResultTable;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SqlConnection sqlConnection = new SqlConnection();
+            sqlConnection.ConnectionString =
+                ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = sqlConnection;
+            int unit=int.Parse (this.dgv_PurchaseTable .CurrentRow.Cells["Add"].Value.ToString());
+            if(unit!=' ')
+            {
+                sqlCommand.CommandText =
+                    $@"INSERT INTO tb_MedicineNo(No,Num)VALUES(@No,@Num)";
+                sqlCommand .Parameters .AddWithValue ("@No",this.dgv_PurchaseTable .CurrentRow.Cells ["编号"].Value .ToString ());
+                sqlCommand.Parameters.AddWithValue("@Num", unit);
+                sqlConnection.Open();
+                int row=sqlCommand.ExecuteNonQuery ();
+                sqlConnection .Close();
+                if(row > 0)
+                {
+                    MessageBox.Show("已预采购");
+                }
+               else
+                {
+                    MessageBox.Show("采购失败！请联系管理员处理");
+                }
+            }
+        }
+
+        private void 入库审核ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WarehousingAudit warehousingAudit = new WarehousingAudit(this._No );
+            warehousingAudit.Show();
+            this.Hide();
+        }
+
+        private void 库存ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MedicineManagement medicineManagement = new MedicineManagement(this._No );
+            medicineManagement.Show();
+            this.Hide();
         }
     }
 }

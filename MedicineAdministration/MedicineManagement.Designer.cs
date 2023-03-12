@@ -133,6 +133,7 @@
             this.入库审核ToolStripMenuItem.Name = "入库审核ToolStripMenuItem";
             this.入库审核ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.入库审核ToolStripMenuItem.Text = "入库审核";
+            this.入库审核ToolStripMenuItem.Click += new System.EventHandler(this.入库审核ToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 

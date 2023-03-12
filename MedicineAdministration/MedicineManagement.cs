@@ -266,11 +266,11 @@ namespace MedicineAdministration
         private void button11_Click(object sender, EventArgs e)
         {
             DataRow[] searchResultRows =
-                this.MedicineTable.Select($"PINYIN LIKE '%{this.Txb_PinYin .Text.Trim()}%'");					//借助本窗体的课程数据表的方法Select，并提供与SQL类似的谓词表达式作为查询条件，根据拼音缩写进行模糊查询（仅支持%通配符）；查询将返回数据行数组；
-            DataTable searchResultTable = this.MedicineTable.Clone();                                         //借助本窗体的课程数据表的方法Clone，创建相同架构的空表，用于保存搜索结果所在数据行；
-            foreach (DataRow row in searchResultRows)                                                       //遍历搜索结果所在数据行数组；
+                this.MedicineTable.Select($"PINYIN LIKE '%{this.Txb_PinYin .Text.Trim()}%'");					
+            DataTable searchResultTable = this.MedicineTable.Clone();                                         
+            foreach (DataRow row in searchResultRows)                                                       
             {
-                searchResultTable.ImportRow(row);                                                           //数据行导入数据表；
+                searchResultTable.ImportRow(row);                                                           
             }
             this.Dgv_Medicine .DataSource = searchResultTable;
         }
@@ -279,6 +279,13 @@ namespace MedicineAdministration
         {
             PurchaseWarehousing purchaseWarehousing = new PurchaseWarehousing(this._No);
             purchaseWarehousing.Show();
+            this.Hide();
+        }
+
+        private void 入库审核ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WarehousingAudit warehousingAudit = new WarehousingAudit(this._No);
+            warehousingAudit.Show();
             this.Hide();
         }
     }
