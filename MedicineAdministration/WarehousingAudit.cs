@@ -33,8 +33,7 @@ namespace MedicineAdministration
             SqlCommand sqlCommand = new SqlCommand();
             sqlCommand.Connection = sqlConnection;
             sqlCommand.CommandText = $@"SELECT S.No AS 编号,MedicineName AS 名称,MedicineClassify AS 分类,Manufacturer  AS 生产厂商 ,InventoryQuantity AS 现存数量,ss.Num as 采购数 
-               FROM tb_Medicine AS S JOIN tb_MedicineNo AS SS ON S.No =SS.No 
-            WHERE SS.Num !=0 ";
+               FROM tb_Medicine AS S JOIN tb_MedicineNo AS SS ON S.No =SS.No ";
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
             sqlDataAdapter.SelectCommand = sqlCommand;
             DataTable dataTable = new DataTable();
@@ -52,8 +51,7 @@ namespace MedicineAdministration
             SqlCommand sqlCommand = new SqlCommand();
             sqlCommand.Connection = sqlConnection;
             sqlCommand.CommandText = $@"SELECT S.No AS 编号,MedicineName AS 名称,MedicineClassify AS 分类,Manufacturer  AS 生产厂商 ,InventoryQuantity AS 现存数量,ss.Num as 采购数 
-               FROM tb_Medicine AS S JOIN tb_MedicineNo AS SS ON S.No =SS.No 
-            WHERE SS.Num !=0 ";
+               FROM tb_Medicine AS S JOIN tb_MedicineNo AS SS ON S.No =SS.No ";
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
             sqlDataAdapter.SelectCommand = sqlCommand;
             DataTable dataTable= new DataTable();
@@ -119,7 +117,14 @@ namespace MedicineAdministration
                      WHERE No='{this.dgv_Aduit .CurrentRow .Cells["编号"].Value .ToString ()}'";
             int num=int.Parse (this.dgv_Aduit .CurrentRow.Cells["采购数"].Value .ToString ());
             sqlCommand.Parameters.AddWithValue("@InventoryQuantity", num);
+            SqlCommand sqlCommand1 = new SqlCommand();
+            sqlCommand1.Connection = sqlConnection;
+            sqlCommand1.CommandText =
+                $@"UPDATE tb_MedicineNo
+                   SET Num='{0}'
+                   WHERE No='{this.dgv_Aduit.CurrentRow.Cells["编号"].Value.ToString()}'";
             sqlConnection.Open();
+            int row1=sqlCommand1 .ExecuteNonQuery();
             int row=sqlCommand.ExecuteNonQuery ();
             sqlConnection.Close();
             if(row> 0)
@@ -131,6 +136,13 @@ namespace MedicineAdministration
                 MessageBox.Show("采购失败！请联系管理员处理");
             }
             this.loaddate();
+        }
+
+        private void 药物报损ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MedicalReport medicalReport = new MedicalReport(this._No );
+            medicalReport.Show();
+            this.Hide();
         }
     }
 }

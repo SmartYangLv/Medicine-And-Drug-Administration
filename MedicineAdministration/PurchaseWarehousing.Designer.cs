@@ -176,6 +176,7 @@
             this.药物报损ToolStripMenuItem.Name = "药物报损ToolStripMenuItem";
             this.药物报损ToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.药物报损ToolStripMenuItem.Text = "药物报损";
+            this.药物报损ToolStripMenuItem.Click += new System.EventHandler(this.药物报损ToolStripMenuItem_Click);
             // 
             // 报损复核ToolStripMenuItem
             // 
@@ -213,7 +214,7 @@
             this.dgv_PurchaseTable.Name = "dgv_PurchaseTable";
             this.dgv_PurchaseTable.RowHeadersWidth = 51;
             this.dgv_PurchaseTable.RowTemplate.Height = 27;
-            this.dgv_PurchaseTable.Size = new System.Drawing.Size(802, 461);
+            this.dgv_PurchaseTable.Size = new System.Drawing.Size(733, 461);
             this.dgv_PurchaseTable.TabIndex = 1;
             // 
             // button1
@@ -228,7 +229,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(502, 537);
+            this.button2.Location = new System.Drawing.Point(457, 537);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(143, 42);
             this.button2.TabIndex = 4;
@@ -248,7 +249,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1001, 589);
+            this.ClientSize = new System.Drawing.Size(929, 589);
             this.Controls.Add(this.cbx_Name);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);

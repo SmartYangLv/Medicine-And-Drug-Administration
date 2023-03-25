@@ -59,6 +59,12 @@
     <Compile Include="Login And SingUp.Designer.cs">
       <DependentUpon>Login And SingUp.cs</DependentUpon>
     </Compile>
+    <Compile Include="MedicalReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MedicalReport.Designer.cs">
+      <DependentUpon>MedicalReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="MedicineManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,12 @@
     <Compile Include="SMS.Designer.cs">
       <DependentUpon>SMS.cs</DependentUpon>
     </Compile>
+    <Compile Include="SupplierManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupplierManagement.Designer.cs">
+      <DependentUpon>SupplierManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="WarehousingAudit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +105,9 @@
     </Compile>
     <EmbeddedResource Include="Login And SingUp.resx">
       <DependentUpon>Login And SingUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MedicalReport.resx">
+      <DependentUpon>MedicalReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MedicineManagement.resx">
       <DependentUpon>MedicineManagement.cs</DependentUpon>
@@ -114,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SMS.resx">
       <DependentUpon>SMS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupplierManagement.resx">
+      <DependentUpon>SupplierManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WarehousingAudit.resx">
       <DependentUpon>WarehousingAudit.cs</DependentUpon>

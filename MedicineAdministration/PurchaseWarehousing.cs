@@ -43,7 +43,8 @@ namespace MedicineAdministration
                 $@"SELECT * FROM tb_Unit";
             sqlCommand.CommandText =
                  $@"SELECT No AS 编号,MedicineName AS 名称,MedicineClassify AS 分类,Manufacturer  AS 生产厂商 ,InventoryQuantity AS 现存数量,UnitNo 
-              FROM tb_Medicine ";
+              FROM tb_Medicine
+               WHERE No Not IN (SELECT No FROM tb_MedicineNo)";
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
             sqlDataAdapter.SelectCommand = sqlCommand;
             sqlDataAdapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
@@ -140,6 +141,13 @@ namespace MedicineAdministration
         {
             MedicineManagement medicineManagement = new MedicineManagement(this._No );
             medicineManagement.Show();
+            this.Hide();
+        }
+
+        private void 药物报损ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MedicalReport medicalReport = new MedicalReport(this._No );
+            medicalReport.Show();
             this.Hide();
         }
     }

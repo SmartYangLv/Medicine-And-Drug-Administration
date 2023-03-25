@@ -288,6 +288,25 @@ namespace MedicineAdministration
             warehousingAudit.Show();
             this.Hide();
         }
+
+        private void Txb_PinYin_TextChanged(object sender, EventArgs e)
+        {
+            DataRow[] searchResultRows =
+                this.MedicineTable.Select($"PINYIN LIKE '%{this.Txb_PinYin.Text.Trim()}%'");
+            DataTable searchResultTable = this.MedicineTable.Clone();
+            foreach (DataRow row in searchResultRows)
+            {
+                searchResultTable.ImportRow(row);
+            }
+            this.Dgv_Medicine.DataSource = searchResultTable;
+        }
+
+        private void 药物报损ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MedicalReport medicalReport = new MedicalReport(this._No);
+            medicalReport.Show();
+            this.Hide();
+        }
     }
 
     namespace Red.Utility.Common.Print

@@ -191,6 +191,7 @@
             this.药物报损ToolStripMenuItem.Name = "药物报损ToolStripMenuItem";
             this.药物报损ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.药物报损ToolStripMenuItem.Text = "药物报损";
+            this.药物报损ToolStripMenuItem.Click += new System.EventHandler(this.药物报损ToolStripMenuItem_Click);
             // 
             // 报损复核ToolStripMenuItem
             // 
@@ -227,6 +228,7 @@
             this.Txb_PinYin.Name = "Txb_PinYin";
             this.Txb_PinYin.Size = new System.Drawing.Size(160, 30);
             this.Txb_PinYin.TabIndex = 3;
+            this.Txb_PinYin.TextChanged += new System.EventHandler(this.Txb_PinYin_TextChanged);
             // 
             // button1
             // 
