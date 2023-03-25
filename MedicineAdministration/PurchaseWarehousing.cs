@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,10 @@ namespace MedicineAdministration
     public partial class PurchaseWarehousing : Form
     {
         private DataTable dataTable;
+        private DataView  MedicalView;
+        private int pagesize;
+        private int currentpageNo;
+        private int Maxpage;
         private DataView CourseViewByName;
         public string _No;
         public PurchaseWarehousing()
@@ -26,9 +31,15 @@ namespace MedicineAdministration
         {
             _No = no;
         }
+        private void RefreshRowFilter()
+            => this.MedicalView.RowFilter =
+            $"RowID>{(this.currentpageNo - 1) * this.pagesize}" +
+            $"AND RowID<={(this.currentpageNo) * this.pagesize}";
 
         private void PurchaseWarehousing_Load(object sender, EventArgs e)
         {
+            this.pagesize = 10;
+            this.currentpageNo = 1;
             SqlConnection sqlConnection = new SqlConnection();
             sqlConnection .ConnectionString=
                 ConfigurationManager.ConnectionStrings ["sql"].ConnectionString;
@@ -49,6 +60,14 @@ namespace MedicineAdministration
             sqlDataAdapter.SelectCommand = sqlCommand;
             sqlDataAdapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
             this.dataTable = new DataTable();
+            this.dataTable.TableName = "Medical";
+            DataColumn column = new DataColumn();
+            column.ColumnName = "RowID";
+            column.DataType = typeof(int); 
+            column .AutoIncrement = true;
+            column .AutoIncrementSeed = 1;
+            column .AutoIncrementStep = 1;
+            this.dataTable.Columns.Add(column);
             SqlDataAdapter sqlDataAdapter1 = new SqlDataAdapter();
             sqlDataAdapter1 .SelectCommand = sqlCommand1;
             sqlDataAdapter1.MissingSchemaAction = MissingSchemaAction.AddWithKey;
@@ -65,12 +84,21 @@ namespace MedicineAdministration
             sqlDataAdapter1.Fill(UnitTable);
             sqlDataAdapter .Fill (dataTable);
             sqlConnection.Close ();
+            this.Maxpage =
+                (int)Math.Ceiling((double)this.dataTable.Rows .Count /(double )this.pagesize);
+            this.MedicalView = new DataView();
+            this.MedicalView.Table = this.dataTable;
+            this.MedicalView.Sort = "RowID ASC";
+            this.RefreshRowFilter ();
             this.CourseViewByName = new DataView();
             this.CourseViewByName.Table = this.dataTable;
             this.CourseViewByName.Sort = "名称 ASC";
             this.dgv_PurchaseTable .Columns.Clear();
-            this.dgv_PurchaseTable.DataSource = dataTable;
+            this.dgv_PurchaseTable.DataSource =this.MedicalView ;
             this.dgv_PurchaseTable.Columns["UnitNo"].Visible = false;
+            this.dgv_PurchaseTable.Columns["RowID"].Visible = false;
+            this.dgv_PurchaseTable .Columns[this.dgv_PurchaseTable .Columns.Count - 1].AutoSizeMode =                     
+                DataGridViewAutoSizeColumnMode.Fill;
             DataGridViewComboBoxColumn UnitColumn = new DataGridViewComboBoxColumn();
             this.dgv_PurchaseTable .Columns .Add (UnitColumn);
             UnitColumn.Name = "unit";
@@ -149,6 +177,20 @@ namespace MedicineAdministration
             MedicalReport medicalReport = new MedicalReport(this._No );
             medicalReport.Show();
             this.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if(this.currentpageNo >1)
+                this.currentpageNo--;
+            this.RefreshRowFilter();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if(this.currentpageNo <this.Maxpage )
+                this.currentpageNo++;
+            this.RefreshRowFilter();
         }
     }
 }

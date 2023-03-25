@@ -50,6 +50,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.cbx_Name = new System.Windows.Forms.ComboBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_PurchaseTable)).BeginInit();
             this.SuspendLayout();
@@ -79,7 +81,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(181, 589);
+            this.menuStrip1.Size = new System.Drawing.Size(181, 455);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -214,7 +216,7 @@
             this.dgv_PurchaseTable.Name = "dgv_PurchaseTable";
             this.dgv_PurchaseTable.RowHeadersWidth = 51;
             this.dgv_PurchaseTable.RowTemplate.Height = 27;
-            this.dgv_PurchaseTable.Size = new System.Drawing.Size(733, 461);
+            this.dgv_PurchaseTable.Size = new System.Drawing.Size(733, 311);
             this.dgv_PurchaseTable.TabIndex = 1;
             // 
             // button1
@@ -229,7 +231,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(457, 537);
+            this.button2.Location = new System.Drawing.Point(456, 406);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(143, 42);
             this.button2.TabIndex = 4;
@@ -245,11 +247,35 @@
             this.cbx_Name.Size = new System.Drawing.Size(204, 28);
             this.cbx_Name.TabIndex = 5;
             // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("楷体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button3.Location = new System.Drawing.Point(719, 387);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "上一页";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("楷体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button4.Location = new System.Drawing.Point(821, 387);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "下一页";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // PurchaseWarehousing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(929, 589);
+            this.ClientSize = new System.Drawing.Size(929, 455);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.cbx_Name);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -293,5 +319,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox cbx_Name;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }

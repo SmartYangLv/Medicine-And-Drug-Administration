@@ -210,6 +210,7 @@
             // 
             // dgv_Medical
             // 
+            this.dgv_Medical.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgv_Medical.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Medical.Location = new System.Drawing.Point(181, 48);
             this.dgv_Medical.Name = "dgv_Medical";
@@ -240,6 +241,7 @@
             // 
             // dgv_MedicalReport
             // 
+            this.dgv_MedicalReport.BackgroundColor = System.Drawing.SystemColors.ScrollBar;
             this.dgv_MedicalReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_MedicalReport.Location = new System.Drawing.Point(181, 416);
             this.dgv_MedicalReport.Name = "dgv_MedicalReport";
@@ -285,7 +287,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MedicalReport";
-            this.Text = "MedicalReport";
+            this.Text = "药物报损";
             this.Load += new System.EventHandler(this.MedicalReport_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

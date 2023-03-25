@@ -59,7 +59,7 @@ namespace MedicineAdministration
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (this.dgv_Medical.RowCount == 0)
+            if (this.dgv_Medical.RowCount==0)
                 return;
             DataRowView MedicalRowView=
                 this.dgv_Medical .CurrentRow .DataBoundItem as DataRowView;
@@ -77,7 +77,7 @@ namespace MedicineAdministration
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if(this.dgv_MedicalReport.RowCount==0)
+            if(this.dgv_MedicalReport.RowCount<1)
                 return;
             DataRowView MedicalReportRowView=
                 this.dgv_MedicalReport.CurrentRow .DataBoundItem as DataRowView;
