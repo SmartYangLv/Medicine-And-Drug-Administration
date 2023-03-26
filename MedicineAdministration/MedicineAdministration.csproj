@@ -71,6 +71,12 @@
     <Compile Include="MedicineManagement.Designer.cs">
       <DependentUpon>MedicineManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="MedicineOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MedicineOrder.Designer.cs">
+      <DependentUpon>MedicineOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="PersonalInformation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MedicineManagement.resx">
       <DependentUpon>MedicineManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MedicineOrder.resx">
+      <DependentUpon>MedicineOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PersonalInformation.resx">
       <DependentUpon>PersonalInformation.cs</DependentUpon>

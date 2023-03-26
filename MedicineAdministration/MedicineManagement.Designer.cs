@@ -64,6 +64,8 @@
             this.txb_No = new System.Windows.Forms.TextBox();
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.药品订单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Medicine)).BeginInit();
             this.menuStrip2.SuspendLayout();
@@ -90,7 +92,9 @@
             this.报损复核ToolStripMenuItem,
             this.toolStripMenuItem5,
             this.采购退货ToolStripMenuItem,
-            this.退货审核ToolStripMenuItem});
+            this.退货审核ToolStripMenuItem,
+            this.toolStripMenuItem6,
+            this.药品订单ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(11, 3, 0, 3);
@@ -399,6 +403,21 @@
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(158, 23);
+            this.toolStripMenuItem6.Text = "---------------------";
+            // 
+            // 药品订单ToolStripMenuItem
+            // 
+            this.药品订单ToolStripMenuItem.Font = new System.Drawing.Font("楷体", 10.8F, System.Drawing.FontStyle.Bold);
+            this.药品订单ToolStripMenuItem.Name = "药品订单ToolStripMenuItem";
+            this.药品订单ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.药品订单ToolStripMenuItem.Text = "药品订单";
+            this.药品订单ToolStripMenuItem.Click += new System.EventHandler(this.药品订单ToolStripMenuItem_Click);
+            // 
             // MedicineManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
@@ -475,5 +494,7 @@
         private System.Windows.Forms.TextBox txb_No;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem 药品订单ToolStripMenuItem;
     }
 }

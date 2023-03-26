@@ -307,6 +307,13 @@ namespace MedicineAdministration
             medicalReport.Show();
             this.Hide();
         }
+
+        private void 药品订单ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MedicineOrder medicineOrder = new MedicineOrder(this._No);
+            medicineOrder.Show();
+            this.Hide();
+        }
     }
 
     namespace Red.Utility.Common.Print
