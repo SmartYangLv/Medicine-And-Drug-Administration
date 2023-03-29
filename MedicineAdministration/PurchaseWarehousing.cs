@@ -156,6 +156,7 @@ namespace MedicineAdministration
                     MessageBox.Show("采购失败！请联系管理员处理");
                 }
             }
+            this.RefreshRowFilter ();
         }
 
         private void 入库审核ToolStripMenuItem_Click(object sender, EventArgs e)

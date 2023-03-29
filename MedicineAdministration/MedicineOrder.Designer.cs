@@ -29,20 +29,22 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
             this.MedicineAction = new System.Windows.Forms.Label();
-            this.lblPrice = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.button5 = new System.Windows.Forms.Button();
             this.lblPrice1 = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.lblAction = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -52,11 +54,77 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("楷体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(157, 9);
+            this.label1.Location = new System.Drawing.Point(171, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(135, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "选择药品：";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(589, 79);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(95, 45);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "→";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("楷体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(950, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(135, 23);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "确定药品：";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(121, 43);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(149, 30);
+            this.textBox1.TabIndex = 8;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 46);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(114, 20);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "拼音查找：";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(12, 529);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 20);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "医嘱：";
+            // 
+            // MedicineAction
+            // 
+            this.MedicineAction.AutoSize = true;
+            this.MedicineAction.Location = new System.Drawing.Point(88, 529);
+            this.MedicineAction.Name = "MedicineAction";
+            this.MedicineAction.Size = new System.Drawing.Size(0, 20);
+            this.MedicineAction.TabIndex = 12;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(1164, 0);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(132, 32);
+            this.button6.TabIndex = 15;
+            this.button6.Text = "退出";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // dataGridView1
             // 
@@ -90,16 +158,6 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(589, 79);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(95, 45);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "→";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(590, 167);
@@ -109,17 +167,6 @@
             this.button4.Text = "←";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("楷体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(953, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(135, 23);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "确定药品：";
             // 
             // dataGridView2
             // 
@@ -131,33 +178,6 @@
             this.dataGridView2.Size = new System.Drawing.Size(606, 376);
             this.dataGridView2.TabIndex = 7;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(121, 43);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(149, 30);
-            this.textBox1.TabIndex = 8;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 46);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 20);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "拼音查找：";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(12, 529);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 20);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "医嘱：";
-            // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(1149, 477);
@@ -168,13 +188,13 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // MedicineAction
+            // lblPrice1
             // 
-            this.MedicineAction.AutoSize = true;
-            this.MedicineAction.Location = new System.Drawing.Point(88, 529);
-            this.MedicineAction.Name = "MedicineAction";
-            this.MedicineAction.Size = new System.Drawing.Size(0, 20);
-            this.MedicineAction.TabIndex = 12;
+            this.lblPrice1.AutoSize = true;
+            this.lblPrice1.Location = new System.Drawing.Point(686, 477);
+            this.lblPrice1.Name = "lblPrice1";
+            this.lblPrice1.Size = new System.Drawing.Size(0, 20);
+            this.lblPrice1.TabIndex = 14;
             // 
             // lblPrice
             // 
@@ -184,19 +204,21 @@
             this.lblPrice.Size = new System.Drawing.Size(0, 20);
             this.lblPrice.TabIndex = 13;
             // 
-            // lblPrice1
+            // lblAction
             // 
-            this.lblPrice1.AutoSize = true;
-            this.lblPrice1.Location = new System.Drawing.Point(686, 477);
-            this.lblPrice1.Name = "lblPrice1";
-            this.lblPrice1.Size = new System.Drawing.Size(0, 20);
-            this.lblPrice1.TabIndex = 14;
+            this.lblAction.AutoSize = true;
+            this.lblAction.Location = new System.Drawing.Point(88, 529);
+            this.lblAction.Name = "lblAction";
+            this.lblAction.Size = new System.Drawing.Size(0, 20);
+            this.lblAction.TabIndex = 16;
             // 
             // MedicineOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1308, 674);
+            this.Controls.Add(this.lblAction);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.lblPrice1);
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.MedicineAction);
@@ -228,19 +250,21 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label MedicineAction;
-        private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label lblPrice1;
+        private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.Label lblAction;
     }
 }

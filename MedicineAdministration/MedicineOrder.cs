@@ -46,10 +46,10 @@ namespace MedicineAdministration
             sqlCommand1 .Connection = sqlConnection;
             sqlCommand .Connection = sqlConnection;
             sqlCommand.CommandText =
-                $@"SELECT NO AS 编号, MedicineName AS 药品名称,PINYIN
+                $@"SELECT NO AS 编号, MedicineName AS 药品名称,PINYIN,Action
          ,MedicineClassify AS 药品类型,Specification AS 药品规格,Price AS 价格 FROM tb_Medicine ";
             sqlCommand1.CommandText =
-                $@"SELECT NO AS 编号, MedicineName AS 药品名称,MedicineClassify AS 药品类型
+                $@"SELECT NO AS 编号, MedicineName AS 药品名称,MedicineClassify AS 药品类型,Action
          ,Specification AS 药品规格,Price AS 价格 FROM tb_MedicalOrder ";
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
             SqlDataAdapter sqlDataAdapter1 = new SqlDataAdapter();
@@ -79,6 +79,8 @@ namespace MedicineAdministration
             this.dataGridView1.DataSource = this.MedicineView ;
             this.dataGridView1 .Columns["PINYIN"].Visible = false;
             this.dataGridView1 .Columns["RowID"].Visible=false;
+            this.dataGridView1 .Columns["Action"].Visible = false;
+            //this.MedicineOrderTable .Columns["Action"].Visible = false;
             this.dataGridView1 .Columns[this.dataGridView1 .ColumnCount - 1].AutoSizeMode =
                 DataGridViewAutoSizeColumnMode.Fill;
             this.dataGridView2 .Columns.Clear ();
@@ -101,6 +103,7 @@ namespace MedicineAdministration
             SelectMedicineRow["药品类型"] = MedicalRow["药品类型"];
             SelectMedicineRow["药品规格"] = MedicalRow["药品规格"];
             SelectMedicineRow["价格"] = MedicalRow["价格"];
+            SelectMedicineRow["Action"] = MedicalRow["Action"];
             this.MedicineOrderTable .Rows .Add (SelectMedicineRow);
             MedicalRow.Delete();
             this.lblPrice1.Text =
@@ -133,13 +136,14 @@ namespace MedicineAdministration
             SqlCommand sqlCommand = new SqlCommand();
             sqlCommand .Connection = sqlConnection;
             sqlCommand.CommandText =
-                $@"INSERT tb_MedicalOrder (NO ,MedicineName ,MedicineClassify ,Specification ,Price )VALUES
-                     (@NO,@MedicineName,@MedicineClassify,@Specification,@Price )";
+                $@"INSERT tb_MedicalOrder (NO ,MedicineName ,MedicineClassify ,Specification ,Price,Action )VALUES
+                     (@NO,@MedicineName,@MedicineClassify,@Specification,@Price,@Action )";
             sqlCommand.Parameters.Add("@NO", SqlDbType.VarChar ,0, "编号");
             sqlCommand.Parameters.Add("@MedicineName", SqlDbType.VarChar, 0, "药品名称");
             sqlCommand.Parameters.Add("@MedicineClassify", SqlDbType.VarChar, 0, "药品类型");
             sqlCommand.Parameters.Add("@Specification", SqlDbType.VarChar, 0, "药品规格");
             sqlCommand.Parameters.Add("@Price", SqlDbType.VarChar, 0, "价格");
+            sqlCommand.Parameters.Add("@Action", SqlDbType.VarChar, 0, "Action");
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
             sqlDataAdapter.InsertCommand  = sqlCommand;
             sqlConnection .Open();
@@ -148,6 +152,12 @@ namespace MedicineAdministration
             MessageBox.Show($"已确定下单{row}种药品");
             this.lblPrice1.Text =
                 $"此订单共花费{this.MedicineOrderTable.Compute("SUM(价格)", "")}元";
+            foreach (DataRow dataRow in MedicineOrderTable.Rows)
+            {
+                string db = dataRow["药品名称"].ToString();
+                string dt = dataRow["Action"].ToString();
+                this.lblAction.Text += $"{db}:注意{dt}\n";
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -178,6 +188,13 @@ namespace MedicineAdministration
                 this.currentpage++;
             }
             this.RefreshRowFilter();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            MedicineManagement medicineManagement = new MedicineManagement(this._No);
+            medicineManagement.Show();
+            this.Hide();
         }
     }
 }
