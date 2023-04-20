@@ -53,75 +53,89 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Login And SingUp.cs">
+    <Compile Include="Bll\IUserBll.cs" />
+    <Compile Include="Bll\UserBll.cs" />
+    <Compile Include="Dal\IUserDal.cs" />
+    <Compile Include="Dal\UserDal.cs" />
+    <Compile Include="模块\Login And SingUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login And SingUp.Designer.cs">
+    <Compile Include="模块\Login And SingUp.Designer.cs">
       <DependentUpon>Login And SingUp.cs</DependentUpon>
     </Compile>
-    <Compile Include="MedicalReport.cs">
+    <Compile Include="模块\MedicalReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MedicalReport.Designer.cs">
+    <Compile Include="模块\MedicalReport.Designer.cs">
       <DependentUpon>MedicalReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="MedicineManagement.cs">
+    <Compile Include="模块\MedicineManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MedicineManagement.Designer.cs">
+    <Compile Include="模块\MedicineManagement.Designer.cs">
       <DependentUpon>MedicineManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="MedicineOrder.cs">
+    <Compile Include="模块\MedicineOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MedicineOrder.Designer.cs">
+    <Compile Include="模块\MedicineOrder.Designer.cs">
       <DependentUpon>MedicineOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="PersonalInformation.cs">
+    <Compile Include="模块\MedicinePriceAdjustment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PersonalInformation.Designer.cs">
+    <Compile Include="模块\MedicinePriceAdjustment.Designer.cs">
+      <DependentUpon>MedicinePriceAdjustment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="模块\PersonalInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="模块\PersonalInformation.Designer.cs">
       <DependentUpon>PersonalInformation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="模块\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PurchaseWarehousing.cs">
+    <Compile Include="模块\PurchaseWarehousing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PurchaseWarehousing.Designer.cs">
+    <Compile Include="模块\PurchaseWarehousing.Designer.cs">
       <DependentUpon>PurchaseWarehousing.cs</DependentUpon>
     </Compile>
-    <Compile Include="SMS.cs">
+    <Compile Include="模块\SMS.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SMS.Designer.cs">
+    <Compile Include="模块\SMS.Designer.cs">
       <DependentUpon>SMS.cs</DependentUpon>
     </Compile>
-    <Compile Include="SupplierManagement.cs">
+    <Compile Include="模块\SupplierManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SupplierManagement.Designer.cs">
+    <Compile Include="模块\SupplierManagement.Designer.cs">
       <DependentUpon>SupplierManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="WarehousingAudit.cs">
+    <Compile Include="Model\User.cs" />
+    <Compile Include="模块\WarehousingAudit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WarehousingAudit.Designer.cs">
+    <Compile Include="模块\WarehousingAudit.Designer.cs">
       <DependentUpon>WarehousingAudit.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Login And SingUp.resx">
+    <EmbeddedResource Include="模块\Login And SingUp.resx">
       <DependentUpon>Login And SingUp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MedicalReport.resx">
+    <EmbeddedResource Include="模块\MedicalReport.resx">
       <DependentUpon>MedicalReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MedicineManagement.resx">
+    <EmbeddedResource Include="模块\MedicineManagement.resx">
       <DependentUpon>MedicineManagement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MedicineOrder.resx">
+    <EmbeddedResource Include="模块\MedicineOrder.resx">
       <DependentUpon>MedicineOrder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PersonalInformation.resx">
+    <EmbeddedResource Include="模块\MedicinePriceAdjustment.resx">
+      <DependentUpon>MedicinePriceAdjustment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="模块\PersonalInformation.resx">
       <DependentUpon>PersonalInformation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -133,16 +147,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="PurchaseWarehousing.resx">
+    <EmbeddedResource Include="模块\PurchaseWarehousing.resx">
       <DependentUpon>PurchaseWarehousing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SMS.resx">
+    <EmbeddedResource Include="模块\SMS.resx">
       <DependentUpon>SMS.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SupplierManagement.resx">
+    <EmbeddedResource Include="模块\SupplierManagement.resx">
       <DependentUpon>SupplierManagement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WarehousingAudit.resx">
+    <EmbeddedResource Include="模块\WarehousingAudit.resx">
       <DependentUpon>WarehousingAudit.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -158,5 +172,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -45,6 +45,7 @@
             this.lblPrice1 = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblAction = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -128,6 +129,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(3, 79);
             this.dataGridView1.Name = "dataGridView1";
@@ -170,6 +172,7 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(690, 79);
             this.dataGridView2.Name = "dataGridView2";
@@ -212,11 +215,22 @@
             this.lblAction.Size = new System.Drawing.Size(0, 20);
             this.lblAction.TabIndex = 16;
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(992, 477);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(132, 52);
+            this.button7.TabIndex = 17;
+            this.button7.Text = "清空";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // MedicineOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1308, 674);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.lblAction);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.lblPrice1);
@@ -266,5 +280,6 @@
         private System.Windows.Forms.Label lblPrice1;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblAction;
+        private System.Windows.Forms.Button button7;
     }
 }

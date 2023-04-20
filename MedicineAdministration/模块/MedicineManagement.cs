@@ -314,6 +314,13 @@ namespace MedicineAdministration
             medicineOrder.Show();
             this.Hide();
         }
+
+        private void 药物调价ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MedicinePriceAdjustment medicinePriceAdjustment = new MedicinePriceAdjustment();
+            medicinePriceAdjustment.Show();
+            this.Hide();
+        }
     }
 
     namespace Red.Utility.Common.Print

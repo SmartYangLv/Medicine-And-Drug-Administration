@@ -46,6 +46,8 @@
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.采购退货ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退货审核ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.药品订单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Txb_PinYin = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.Dgv_Medicine = new System.Windows.Forms.DataGridView();
@@ -64,8 +66,6 @@
             this.txb_No = new System.Windows.Forms.TextBox();
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
-            this.药品订单ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Medicine)).BeginInit();
             this.menuStrip2.SuspendLayout();
@@ -174,6 +174,7 @@
             this.药物调价ToolStripMenuItem.Name = "药物调价ToolStripMenuItem";
             this.药物调价ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.药物调价ToolStripMenuItem.Text = "药物调价";
+            this.药物调价ToolStripMenuItem.Click += new System.EventHandler(this.药物调价ToolStripMenuItem_Click);
             // 
             // 库存查询ToolStripMenuItem
             // 
@@ -224,6 +225,21 @@
             this.退货审核ToolStripMenuItem.Name = "退货审核ToolStripMenuItem";
             this.退货审核ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.退货审核ToolStripMenuItem.Text = "退货审核";
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(158, 23);
+            this.toolStripMenuItem6.Text = "---------------------";
+            // 
+            // 药品订单ToolStripMenuItem
+            // 
+            this.药品订单ToolStripMenuItem.Font = new System.Drawing.Font("楷体", 10.8F, System.Drawing.FontStyle.Bold);
+            this.药品订单ToolStripMenuItem.Name = "药品订单ToolStripMenuItem";
+            this.药品订单ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.药品订单ToolStripMenuItem.Text = "药品订单";
+            this.药品订单ToolStripMenuItem.Click += new System.EventHandler(this.药品订单ToolStripMenuItem_Click);
             // 
             // Txb_PinYin
             // 
@@ -402,21 +418,6 @@
             this.button11.Text = "按拼音搜索";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // toolStripMenuItem6
-            // 
-            this.toolStripMenuItem6.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
-            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(158, 23);
-            this.toolStripMenuItem6.Text = "---------------------";
-            // 
-            // 药品订单ToolStripMenuItem
-            // 
-            this.药品订单ToolStripMenuItem.Font = new System.Drawing.Font("楷体", 10.8F, System.Drawing.FontStyle.Bold);
-            this.药品订单ToolStripMenuItem.Name = "药品订单ToolStripMenuItem";
-            this.药品订单ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.药品订单ToolStripMenuItem.Text = "药品订单";
-            this.药品订单ToolStripMenuItem.Click += new System.EventHandler(this.药品订单ToolStripMenuItem_Click);
             // 
             // MedicineManagement
             // 

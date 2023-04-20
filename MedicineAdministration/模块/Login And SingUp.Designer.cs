@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txb_No = new System.Windows.Forms.TextBox();
@@ -36,6 +37,8 @@
             this.SingUp = new System.Windows.Forms.Button();
             this.Lab_No = new System.Windows.Forms.Label();
             this.LabPaw = new System.Windows.Forms.Label();
+            this.ErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -112,6 +115,10 @@
             this.LabPaw.Size = new System.Drawing.Size(0, 20);
             this.LabPaw.TabIndex = 7;
             // 
+            // ErrorProvider
+            // 
+            this.ErrorProvider.ContainerControl = this;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
@@ -129,6 +136,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "医药管理系统";
+            ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,6 +152,7 @@
         private System.Windows.Forms.Button SingUp;
         private System.Windows.Forms.Label Lab_No;
         private System.Windows.Forms.Label LabPaw;
+        private System.Windows.Forms.ErrorProvider ErrorProvider;
     }
 }
 

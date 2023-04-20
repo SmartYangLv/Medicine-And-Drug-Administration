@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.TextFormatting;
 
 namespace MedicineAdministration
 {
@@ -34,6 +35,63 @@ namespace MedicineAdministration
         => this.MedicineView .RowFilter =                                                                
                 $"RowID >{(this.currentpage  - 1) * this.pagesize } " +
                 $"AND RowID <={this.currentpage  * this.pagesize }";
+        private void LoadQing()
+        {
+            this.pagesize = 10;
+            this.currentpage = 1;
+            SqlConnection sqlConnection = new SqlConnection();
+            sqlConnection.ConnectionString =
+                ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            SqlCommand sqlCommand1 = new SqlCommand();
+            sqlCommand1.Connection = sqlConnection;
+            sqlCommand.Connection = sqlConnection;
+            sqlCommand.CommandText =
+                $@"SELECT NO AS 编号, MedicineName AS 药品名称,PINYIN,Action
+         ,MedicineClassify AS 药品类型,Specification AS 药品规格,Price AS 价格 FROM tb_Medicine ";
+            sqlCommand1.CommandText =
+                $@"SELECT NO AS 编号, MedicineName AS 药品名称,MedicineClassify AS 药品类型,Action
+         ,Specification AS 药品规格,Price AS 价格 FROM tb_MedicalOrder ";
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+            SqlDataAdapter sqlDataAdapter1 = new SqlDataAdapter();
+            sqlDataAdapter1.SelectCommand = sqlCommand1;
+            sqlDataAdapter.SelectCommand = sqlCommand;
+            this.MedicineOrderTable = new DataTable();
+            this.MedicineTable = new DataTable();
+            this.MedicineTable.TableName = "Medicine";
+            DataColumn rowIdColumn = new DataColumn();
+            rowIdColumn.ColumnName = "RowID";
+            rowIdColumn.DataType = typeof(int);
+            rowIdColumn.AutoIncrement = true;
+            rowIdColumn.AutoIncrementSeed = 1;
+            rowIdColumn.AutoIncrementStep = 1;
+            this.MedicineTable.Columns.Add(rowIdColumn);
+            sqlConnection.Open();
+            sqlDataAdapter1.Fill(this.MedicineOrderTable);
+            sqlDataAdapter.Fill(this.MedicineTable);
+            sqlConnection.Close();
+            this.maxpagesize =
+                (int)Math.Ceiling((double)this.MedicineTable.Rows.Count / (double)this.pagesize);
+            this.MedicineView = new DataView();
+            this.MedicineView.Table = this.MedicineTable;
+            this.MedicineView.Sort = "RowID ASC";
+            this.RefreshRowFilter();
+            this.dataGridView1.Columns.Clear();
+            this.dataGridView1.DataSource = this.MedicineView;
+            this.dataGridView1.Columns["PINYIN"].Visible = false;
+            this.dataGridView1.Columns["RowID"].Visible = false;
+            this.dataGridView1.Columns["Action"].Visible = false;
+            //this.MedicineOrderTable .Columns["Action"].Visible = false;
+            this.dataGridView1.Columns[this.dataGridView1.ColumnCount - 1].AutoSizeMode =
+                DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridView2.Columns.Clear();
+            this.dataGridView2.DataSource = this.MedicineOrderTable;
+            this.dataGridView2.Columns[this.dataGridView2.ColumnCount - 1].AutoSizeMode =
+                DataGridViewAutoSizeColumnMode.Fill;
+            this.lblPrice1.Text =
+                $"此订单共花费{this.MedicineOrderTable.Compute("SUM(价格)", "")}元";
+
+        }
         private void MedicineOrder_Load(object sender, EventArgs e)
         {
             this.pagesize = 10;
@@ -152,6 +210,7 @@ namespace MedicineAdministration
             MessageBox.Show($"已确定下单{row}种药品");
             this.lblPrice1.Text =
                 $"此订单共花费{this.MedicineOrderTable.Compute("SUM(价格)", "")}元";
+            this.lblAction.Text = "";
             foreach (DataRow dataRow in MedicineOrderTable.Rows)
             {
                 string db = dataRow["药品名称"].ToString();
@@ -195,6 +254,24 @@ namespace MedicineAdministration
             MedicineManagement medicineManagement = new MedicineManagement(this._No);
             medicineManagement.Show();
             this.Hide();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            SqlConnection sqlConnection = new SqlConnection();
+            sqlConnection.ConnectionString =
+                ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
+            SqlCommand sqlCommand = sqlConnection.CreateCommand();
+            sqlCommand.CommandText =
+                "DELETE tb_MedicalOrder;";
+            sqlConnection .Open();
+            int row= sqlCommand.ExecuteNonQuery();
+            sqlConnection.Close();
+            MessageBox.Show("已清空");
+            this.LoadQing();
+            this.lblAction.Text = "";
+            this.lblPrice1.Text =
+                $"此订单共花费{this.MedicineOrderTable.Compute("SUM(价格)", "")}元";
         }
     }
 }

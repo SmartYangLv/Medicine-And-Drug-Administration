@@ -98,10 +98,10 @@ namespace MedicineAdministration
                ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
             SqlCommand sqlCommand = sqlConnection.CreateCommand ();
             sqlCommand.CommandText =
-                $@"INSERT tb_MedicalReport (NO ,MedicineName,MedicineClassify ,InventoryQuantity ,ExpirationTime ,Price )
-                   VALUES(@NO,@MedicineName,@MedicineClassify,@InventoryQuantity,@ExpirationTime,@Price)";
-            sqlCommand.Parameters.AddWithValue("@NO", "编号");
-            sqlCommand.Parameters.Add("@MedicineName", SqlDbType.VarChar,0,"药品名称");
+                $@"INSERT tb_MedicalReport (No ,MedicineName,MedicineClassify ,InventoryQuantity ,ExpirationTime ,Price )
+                   VALUES(@No,@MedicineName,@MedicineClassify,@InventoryQuantity,@ExpirationTime,@Price)";
+            sqlCommand.Parameters.Add("@No",SqlDbType.Char,0 ,"编号");
+            sqlCommand.Parameters.Add("@MedicineName",SqlDbType.VarChar,0,"药品名称");
             sqlCommand.Parameters.Add("@MedicineClassify", SqlDbType.VarChar, 0, "药品分类");
             sqlCommand.Parameters.Add("@InventoryQuantity", SqlDbType.Int , 50, "药品数量");
             sqlCommand.Parameters.Add("@ExpirationTime", SqlDbType.Date , 50, "过期时间");
