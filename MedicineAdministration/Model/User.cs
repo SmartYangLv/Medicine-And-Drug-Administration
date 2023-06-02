@@ -1,20 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MedicineAdministration
+namespace MedicineAdministration.Model
 {
-    public class User
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class User
     {
-        public string No;
-        public byte[] Password;
-        public bool IsActivated;
-        public int LoginFailCount;
-        public string UserName;
+        [Key]
+        [StringLength(20)]
+        public string NO { get; set; }
+
+        [Required]
+        [MaxLength(128)]
+        public byte[] Password { get; set; }
+
+        [StringLength(20)]
+        public string Name { get; set; }
+
+        public bool? Gender { get; set; }
+
+        [StringLength(20)]
+        public string Number { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? WorkTime { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? Birthday { get; set; }
+
+        public int? Post { get; set; }
+
+        public int? Department { get; set; }
+
+        [StringLength(20)]
+        public string Salary { get; set; }
+
+        public byte[] Photo { get; set; }
+
+        public bool? IsActivated { get; set; }
+
+        public int LoginFailCount { get; set; }
     }
 }

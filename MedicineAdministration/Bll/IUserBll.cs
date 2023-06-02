@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedicineAdministration.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -49,13 +50,13 @@ namespace MedicineAdministration.Bll
         /// <param name="UserNo"></param>
         /// <param name="Password"></param>
         /// <returns></returns>
-        User LogIn(string UserNo,string Password);
-       /// <summary>
-       /// 注册
-       /// </summary>
-       /// <param name="UserNo"></param>
-       /// <param name="Password"></param>
-       /// <returns></returns>
+        User  LogIn(string UserNo,string Password);
+        /// <summary>
+        /// 注册
+        /// </summary>
+        /// <param name="UserNo"></param>
+        /// <param name="Password"></param>
+        /// <returns></returns>
         User SingUp(string UserNo, string Password);
    }
 }

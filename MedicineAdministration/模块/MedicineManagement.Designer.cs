@@ -108,6 +108,7 @@
             this.药物信息维护ToolStripMenuItem.Name = "药物信息维护ToolStripMenuItem";
             this.药物信息维护ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.药物信息维护ToolStripMenuItem.Text = "药物信息维护";
+            this.药物信息维护ToolStripMenuItem.Click += new System.EventHandler(this.药物信息维护ToolStripMenuItem_Click);
             // 
             // 供应商维护ToolStripMenuItem
             // 
@@ -115,6 +116,7 @@
             this.供应商维护ToolStripMenuItem.Name = "供应商维护ToolStripMenuItem";
             this.供应商维护ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.供应商维护ToolStripMenuItem.Text = "供应商维护";
+            this.供应商维护ToolStripMenuItem.Click += new System.EventHandler(this.供应商维护ToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -417,7 +419,6 @@
             this.button11.TabIndex = 22;
             this.button11.Text = "按拼音搜索";
             this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // MedicineManagement
             // 

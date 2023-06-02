@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Security.AccessControl;
-using static System.Net.WebRequestMethods;
-using System.Drawing.Printing;
+﻿using MedicineAdministration.Model;
 using MedicineAdministration.Red.Utility.Common.Print;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.Entity;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Drawing.Printing;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace MedicineAdministration
 {
     public partial class MedicineManagement : Form
     {
+        private MedicineDrug _MedicineDrug;
         private DataTable MedicineTable;
         private DataView CourseViewByName;
         public string _No;
@@ -33,53 +31,85 @@ namespace MedicineAdministration
         }
         private void LoadTable()
         {
-            SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString =
-                ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
-            SqlCommand sqlCommand = new SqlCommand();
-            sqlCommand.Connection = sqlConnection;
-            sqlCommand.CommandText = $@"SELECT No AS 编号,MedicineName AS 名称,PINYIN, MedicineClassify AS 分类
-             ,Manufacturer AS 生产厂家,Specification 规格,InventoryQuantity AS 数量,Price AS 价格
-             , iif (DATEDIFF(DAY,ExpirationTime,GETDATE())>-30,'忽略预警','1') AS 操作 FROM tb_Medicine  
-              WHERE DATEDIFF (DAY ,ExpirationTime ,GETDATE ())>-30";
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
-            sqlDataAdapter.SelectCommand = sqlCommand;
-            sqlDataAdapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-            this.MedicineTable = new DataTable();
-            sqlConnection.Open();
-            sqlDataAdapter.Fill(MedicineTable);
-            sqlConnection.Close();
-            this.CourseViewByName = new DataView();                                                         
-            this.CourseViewByName.Table = this.MedicineTable ;                                                 
-            this.CourseViewByName.Sort = "名称 ASC";
-            this.Dgv_Medicine.Columns.Clear();
-            this.Dgv_Medicine.DataSource = MedicineTable;
-            this.Dgv_Medicine.Columns["PINYIN"].Visible = false;
+            MedicineDrug medicineDrug = new MedicineDrug();
+            this._MedicineDrug = medicineDrug;
+            var medicine = from s in _MedicineDrug.Medicine
+                           select s;
+            medicine.Load();
+            this.Dgv_Medicine.DataSource = _MedicineDrug.Medicine.Local.ToBindingList();
+
+
+
+
+
+            //SqlConnection sqlConnection = new SqlConnection();
+            //sqlConnection.ConnectionString =
+            //    ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
+            //SqlCommand sqlCommand = new SqlCommand();
+            //sqlCommand.Connection = sqlConnection;
+            //sqlCommand.CommandText = $@"SELECT No AS 编号,MedicineName AS 名称,PINYIN, MedicineClassify AS 分类
+            // ,Manufacturer AS 生产厂家,Specification 规格,InventoryQuantity AS 数量,Price AS 价格
+            // , iif (DATEDIFF(DAY,ExpirationTime,GETDATE())>-30,'忽略预警','1') AS 操作 FROM tb_Medicine  
+            //  WHERE DATEDIFF (DAY ,ExpirationTime ,GETDATE ())>-30";
+            //SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+            //sqlDataAdapter.SelectCommand = sqlCommand;
+            //sqlDataAdapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            //this.MedicineTable = new DataTable();
+            //sqlConnection.Open();
+            //sqlDataAdapter.Fill(MedicineTable);
+            //sqlConnection.Close();
+            //this.CourseViewByName = new DataView();
+            //this.CourseViewByName.Table = this.MedicineTable;
+            //this.CourseViewByName.Sort = "名称 ASC";
+            //this.Dgv_Medicine.Columns.Clear();
+            //this.Dgv_Medicine.DataSource = MedicineTable;
+            //this.Dgv_Medicine.Columns["PINYIN"].Visible = false;
         }
         private void MedicineManagement_Load(object sender, EventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString =
-                ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
-            SqlCommand sqlCommand = new SqlCommand();
-            sqlCommand.Connection = sqlConnection;
-            sqlCommand.CommandText = $@"SELECT No AS 编号,MedicineName AS 名称,PINYIN,MedicineClassify AS 分类
-             ,Manufacturer AS 生产厂家,Specification 规格,InventoryQuantity AS 数量,Price AS 价格
-             , iif (DATEDIFF(DAY,ExpirationTime,GETDATE())>-30,'忽略预警','1') AS 操作 FROM tb_Medicine  
-              WHERE DATEDIFF (DAY ,ExpirationTime ,GETDATE ())>-30";
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
-            sqlDataAdapter.SelectCommand = sqlCommand;
-            sqlDataAdapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-            this.MedicineTable = new DataTable();
-            sqlConnection.Open();
-            sqlDataAdapter.Fill(MedicineTable);
-            sqlConnection.Close();
-            this.CourseViewByName = new DataView();
-            this.CourseViewByName.Table = this.MedicineTable;
-            this.CourseViewByName.Sort = "名称 ASC";
-            this.Dgv_Medicine.Columns.Clear();
-            this.Dgv_Medicine.DataSource = MedicineTable;
-            this.Dgv_Medicine.Columns["PINYIN"].Visible = false;
+
+            MedicineDrug medicineDrug = new MedicineDrug();
+            this._MedicineDrug = medicineDrug;
+            var medicine = from s in _MedicineDrug.Medicine
+                           select s;
+            medicine.Load();
+            this.Dgv_Medicine.DataSource = _MedicineDrug.Medicine.Local.ToBindingList();
+            this.Dgv_Medicine.Columns["NO"].HeaderText = "编号";
+            this.Dgv_Medicine.Columns["MedicineName"].HeaderText = "名称";
+            this.Dgv_Medicine .Columns["PINYIN"].Visible = false;
+            this.Dgv_Medicine.Columns["MedicineClassify"].Visible =false;
+            this.Dgv_Medicine.Columns["Manufacturer"].HeaderText = "供应商";
+            this.Dgv_Medicine .Columns["AreaNo"].Visible =false;
+            this.Dgv_Medicine.Columns["Specification"].HeaderText = "药品规格";
+            this.Dgv_Medicine.Columns["InventoryQuantity"].HeaderText = "数量";
+            this.Dgv_Medicine .Columns["UnitNo"].Visible =false;
+            this.Dgv_Medicine.Columns["ExpirationTime"].HeaderText = "过期时间";
+            this.Dgv_Medicine.Columns["Price"].HeaderText = "价格";
+            this.Dgv_Medicine .Columns["Action"].Visible = false;
+            this.Dgv_Medicine.Columns["IsActioned"].Visible = false;
+            int row =_MedicineDrug .SaveChanges ();
+            //SqlConnection sqlConnection = new SqlConnection();
+            //sqlConnection.ConnectionString =
+            //    ConfigurationManager.ConnectionStrings["sql"].ConnectionString;
+            //SqlCommand sqlCommand = new SqlCommand();
+            //sqlCommand.Connection = sqlConnection;
+            //sqlCommand.CommandText = $@"SELECT No AS 编号,MedicineName AS 名称,PINYIN,MedicineClassify AS 分类
+            // ,Manufacturer AS 生产厂家,Specification 规格,InventoryQuantity AS 数量,Price AS 价格
+            // , iif (DATEDIFF(DAY,ExpirationTime,GETDATE())>-30,'忽略预警','1') AS 操作 FROM tb_Medicine  
+            //  WHERE DATEDIFF (DAY ,ExpirationTime ,GETDATE ())>-30";
+            //SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+            //sqlDataAdapter.SelectCommand = sqlCommand;
+            //sqlDataAdapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
+            //this.MedicineTable = new DataTable();
+            //sqlConnection.Open();
+            //sqlDataAdapter.Fill(MedicineTable);
+            //sqlConnection.Close();
+            //this.CourseViewByName = new DataView();
+            //this.CourseViewByName.Table = this.MedicineTable;
+            //this.CourseViewByName.Sort = "名称 ASC";
+            //this.Dgv_Medicine.Columns.Clear();
+            //this.Dgv_Medicine.DataSource = MedicineTable;
+            //this.Dgv_Medicine.Columns["PINYIN"].Visible = false;
         }
 
         private void 个人信息ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -88,13 +118,22 @@ namespace MedicineAdministration
             personalInformation.Show();
             this.Hide();
         }
-
+        private Dictionary<string, Medicine> _Dictionary;
+        private ILookup <string, Medicine> _Lookup;
         private void button1_Click(object sender, EventArgs e)
         {
-            DataRow searchResultRow = this.MedicineTable .Rows.Find(this.txb_No.Text.Trim());            
-            DataTable searchResultTable = this.MedicineTable .Clone();                                         
-            searchResultTable.ImportRow(searchResultRow);                                                   
-            this.Dgv_Medicine.DataSource = searchResultTable;
+            MedicineDrug medicineDrug = new MedicineDrug();
+            var medicine = from r in _MedicineDrug.Medicine
+                           select r;
+            this._Dictionary = medicine.ToDictionary(c => c.NO);
+            var medicine1 = new List<Medicine>()
+            {this._Dictionary[this.txb_No.Text]};
+            this.Dgv_Medicine .DataSource = medicine1;
+
+            //DataRow searchResultRow = this.MedicineTable .Rows.Find(this.txb_No.Text.Trim());            
+            //DataTable searchResultTable = this.MedicineTable .Clone();                                         
+            //searchResultTable.ImportRow(searchResultRow);                                                   
+            //this.Dgv_Medicine.DataSource = searchResultTable;
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -148,7 +187,7 @@ namespace MedicineAdministration
             sqlConnection .Open ();
             int row = sqlDataAdapter.Update(dataTable);
             sqlConnection.Close();
-            MessageBox.Show($"已更新{row }行");
+            System.Windows.Forms.MessageBox.Show($"已更新{row }行");
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -232,14 +271,14 @@ namespace MedicineAdministration
                         sqlConnection.Open();
                         int row1 = sqlCommand.ExecuteNonQuery();
                         sqlConnection.Close();
-                        MessageBox.Show("已忽略");
+                        System.Windows.MessageBox.Show("已忽略");
                         this.LoadTable();
                     }
                 }
 
                 else
                 {
-                    MessageBox.Show("发生错误！，请联系管理员");
+                    System.Windows.MessageBox.Show("发生错误！，请联系管理员");
                 }
             }
         }
@@ -253,26 +292,23 @@ namespace MedicineAdministration
 
         private void button10_Click(object sender, EventArgs e)
         {
-            DataRowView[] searchResultRowViews =
-                this.CourseViewByName.FindRows(this.txb_Name.Text.Trim());                            
-            DataTable searchResultTable = this.MedicineTable .Clone();                                        
-            foreach (DataRowView dataRowView in searchResultRowViews)                                      
-            {
-                searchResultTable.ImportRow(dataRowView.Row);                                              
-            }
-            this.Dgv_Medicine.DataSource = searchResultTable;
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-            DataRow[] searchResultRows =
-                this.MedicineTable.Select($"PINYIN LIKE '%{this.Txb_PinYin .Text.Trim()}%'");					
-            DataTable searchResultTable = this.MedicineTable.Clone();                                         
-            foreach (DataRow row in searchResultRows)                                                       
-            {
-                searchResultTable.ImportRow(row);                                                           
-            }
-            this.Dgv_Medicine .DataSource = searchResultTable;
+            MedicineDrug medicineDrug = new MedicineDrug();
+            var medicine = from r in _MedicineDrug.Medicine
+                           select r;
+            this._Lookup = medicine.ToLookup(c => c.MedicineName);
+            var result = this._Lookup[this.txb_Name .Text ].ToList();
+            this.Dgv_Medicine.DataSource = result;
+           
+                
+                
+                //DataRowView[] searchResultRowViews =
+            //    this.CourseViewByName.FindRows(this.txb_Name.Text.Trim());                            
+            //DataTable searchResultTable = this.MedicineTable .Clone();                                        
+            //foreach (DataRowView dataRowView in searchResultRowViews)                                      
+            //{
+            //    searchResultTable.ImportRow(dataRowView.Row);                                              
+            //}
+            //this.Dgv_Medicine.DataSource = searchResultTable;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -288,17 +324,19 @@ namespace MedicineAdministration
             warehousingAudit.Show();
             this.Hide();
         }
-
+        private List<Medicine  > medicineDrugs = new List<Medicine >();
         private void Txb_PinYin_TextChanged(object sender, EventArgs e)
         {
-            DataRow[] searchResultRows =
-                this.MedicineTable.Select($"PINYIN LIKE '%{this.Txb_PinYin.Text.Trim()}%'");
-            DataTable searchResultTable = this.MedicineTable.Clone();
-            foreach (DataRow row in searchResultRows)
-            {
-                searchResultTable.ImportRow(row);
-            }
-            this.Dgv_Medicine.DataSource = searchResultTable;
+            var result = medicineDrugs.FindAll(c => c.PINYIN.Contains(this.Txb_PinYin.Text));
+            this.Dgv_Medicine.DataSource = result;
+            //DataRow[] searchResultRows =
+            //    this.MedicineTable.Select($"PINYIN LIKE '%{this.Txb_PinYin.Text.Trim()}%'");
+            //DataTable searchResultTable = this.MedicineTable.Clone();
+            //foreach (DataRow row in searchResultRows)
+            //{
+            //    searchResultTable.ImportRow(row);
+            //}
+            //this.Dgv_Medicine.DataSource = searchResultTable;
         }
 
         private void 药物报损ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -320,6 +358,18 @@ namespace MedicineAdministration
             MedicinePriceAdjustment medicinePriceAdjustment = new MedicinePriceAdjustment();
             medicinePriceAdjustment.Show();
             this.Hide();
+        }
+
+        private void 供应商维护ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SupplierMaintenance supplierMaintenance =new SupplierMaintenance();
+            supplierMaintenance .Show();
+            this.Hide();
+        }
+
+        private void 药物信息维护ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 
@@ -378,7 +428,7 @@ namespace MedicineAdministration
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    System.Windows.Forms.MessageBox.Show(ex.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
@@ -393,7 +443,7 @@ namespace MedicineAdministration
             {
 
                 //标题字体
-                Font titleFont = new Font("微软雅黑", 16, FontStyle.Bold);
+                Font titleFont = new Font("微软雅黑", 16, System.Drawing.FontStyle.Bold);
                 //标题尺寸
                 SizeF titleSize = e.Graphics.MeasureString(titleName, titleFont, e.MarginBounds.Width);
                 //x坐标

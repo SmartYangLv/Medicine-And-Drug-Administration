@@ -47,14 +47,10 @@
             this.采购退货ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退货审核ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgv_Medical = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dgv_MedicalReport = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Medical)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_MedicalReport)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -81,7 +77,7 @@
             this.退货审核ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(178, 754);
+            this.menuStrip1.Size = new System.Drawing.Size(178, 710);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -98,6 +94,7 @@
             this.供应商维护ToolStripMenuItem.Name = "供应商维护ToolStripMenuItem";
             this.供应商维护ToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.供应商维护ToolStripMenuItem.Text = "供应商维护";
+            this.供应商维护ToolStripMenuItem.Click += new System.EventHandler(this.供应商维护ToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -157,6 +154,7 @@
             this.药物调价ToolStripMenuItem.Name = "药物调价ToolStripMenuItem";
             this.药物调价ToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.药物调价ToolStripMenuItem.Text = "药物调价";
+            this.药物调价ToolStripMenuItem.Click += new System.EventHandler(this.药物调价ToolStripMenuItem_Click);
             // 
             // 库存查询ToolStripMenuItem
             // 
@@ -212,47 +210,16 @@
             // 
             this.dgv_Medical.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgv_Medical.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Medical.Location = new System.Drawing.Point(181, 48);
+            this.dgv_Medical.Location = new System.Drawing.Point(183, 79);
             this.dgv_Medical.Name = "dgv_Medical";
             this.dgv_Medical.RowHeadersWidth = 51;
             this.dgv_Medical.RowTemplate.Height = 27;
-            this.dgv_Medical.Size = new System.Drawing.Size(655, 304);
+            this.dgv_Medical.Size = new System.Drawing.Size(830, 547);
             this.dgv_Medical.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(567, 358);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(78, 52);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "↓";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(358, 358);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(89, 52);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "↑";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // dgv_MedicalReport
-            // 
-            this.dgv_MedicalReport.BackgroundColor = System.Drawing.SystemColors.ScrollBar;
-            this.dgv_MedicalReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_MedicalReport.Location = new System.Drawing.Point(181, 416);
-            this.dgv_MedicalReport.Name = "dgv_MedicalReport";
-            this.dgv_MedicalReport.RowHeadersWidth = 51;
-            this.dgv_MedicalReport.RowTemplate.Height = 27;
-            this.dgv_MedicalReport.Size = new System.Drawing.Size(655, 277);
-            this.dgv_MedicalReport.TabIndex = 4;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(423, 699);
+            this.button3.Location = new System.Drawing.Point(525, 646);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(128, 50);
             this.button3.TabIndex = 5;
@@ -275,12 +242,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(848, 754);
+            this.ClientSize = new System.Drawing.Size(1037, 710);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.dgv_MedicalReport);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.dgv_Medical);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("楷体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -292,7 +256,6 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Medical)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_MedicalReport)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -319,9 +282,6 @@
         private System.Windows.Forms.ToolStripMenuItem 采购退货ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退货审核ToolStripMenuItem;
         private System.Windows.Forms.DataGridView dgv_Medical;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridView dgv_MedicalReport;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
     }

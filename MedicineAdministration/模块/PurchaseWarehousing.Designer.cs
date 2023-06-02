@@ -81,7 +81,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(181, 455);
+            this.menuStrip1.Size = new System.Drawing.Size(181, 564);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -98,6 +98,7 @@
             this.供应商维护ToolStripMenuItem.Name = "供应商维护ToolStripMenuItem";
             this.供应商维护ToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.供应商维护ToolStripMenuItem.Text = "供应商维护";
+            this.供应商维护ToolStripMenuItem.Click += new System.EventHandler(this.供应商维护ToolStripMenuItem_Click);
             // 
             // 采购入库ToolStripMenuItem
             // 
@@ -212,11 +213,11 @@
             // 
             this.dgv_PurchaseTable.BackgroundColor = System.Drawing.Color.White;
             this.dgv_PurchaseTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_PurchaseTable.Location = new System.Drawing.Point(184, 70);
+            this.dgv_PurchaseTable.Location = new System.Drawing.Point(545, 24);
             this.dgv_PurchaseTable.Name = "dgv_PurchaseTable";
             this.dgv_PurchaseTable.RowHeadersWidth = 51;
             this.dgv_PurchaseTable.RowTemplate.Height = 27;
-            this.dgv_PurchaseTable.Size = new System.Drawing.Size(733, 311);
+            this.dgv_PurchaseTable.Size = new System.Drawing.Size(733, 413);
             this.dgv_PurchaseTable.TabIndex = 1;
             // 
             // button1
@@ -231,7 +232,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(456, 406);
+            this.button2.Location = new System.Drawing.Point(1124, 510);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(143, 42);
             this.button2.TabIndex = 4;
@@ -250,7 +251,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("楷体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button3.Location = new System.Drawing.Point(719, 387);
+            this.button3.Location = new System.Drawing.Point(1095, 443);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 6;
@@ -261,7 +262,7 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("楷体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button4.Location = new System.Drawing.Point(821, 387);
+            this.button4.Location = new System.Drawing.Point(1203, 443);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 7;
@@ -273,7 +274,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(929, 455);
+            this.ClientSize = new System.Drawing.Size(1290, 564);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.cbx_Name);

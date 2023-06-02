@@ -1,4 +1,5 @@
 ﻿using MedicineAdministration.Dal;
+using MedicineAdministration.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,7 +66,7 @@ namespace MedicineAdministration.Bll
         /// </summary>
         /// <param name="user"></param>
         /// <exception cref="ApplicationException"></exception>
-        private void HandleUserNotExist(User user)
+        private void HandleUserNotExist(User  user)
         {
             if(user ==null )
             {
@@ -80,7 +81,7 @@ namespace MedicineAdministration.Bll
         /// <exception cref="ApplicationException"></exception>
         private void HandleUserNotActivated(User user)
         {
-            if(!user.IsActivated)
+            if((bool)!user.IsActivated)
             {
                 string errorMessage = "用户已被冻结，需要手机验证！";
                 throw new ApplicationException (errorMessage);
@@ -95,7 +96,7 @@ namespace MedicineAdministration.Bll
             if (user .LoginFailCount >=this.LogInFailCountMax)
             {
                 user.IsActivated = false;
-                this.UserDal.Update(user);
+                this.UserDal.Update(user );
             }
         }
         /// <summary>
@@ -120,7 +121,7 @@ namespace MedicineAdministration.Bll
             {
                 this.HandleUserLoginFail(user);
                 this.HandleUserLoginFailTooManyTims (user);
-                string errorMessage = user.IsActivated ?
+                string errorMessage = (bool)user.IsActivated ?
                     $"密码错误，请重新输入！\n 您还有{this.LogInFailCountMax - user.LoginFailCount}此机会！"
                     : $"密码错误已达{this.LogInFailCountMax}次上限！";
                 throw new ApplicationException (errorMessage);
@@ -194,7 +195,7 @@ namespace MedicineAdministration.Bll
             this.HasSignedUp = false;
             User user = new User()
             {
-                No = UserNo,
+                NO = UserNo,
                 Password = Md5(Password),
                 IsActivated = true
             };

@@ -136,6 +136,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "医药管理系统";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -152,7 +153,7 @@
         private System.Windows.Forms.Button SingUp;
         private System.Windows.Forms.Label Lab_No;
         private System.Windows.Forms.Label LabPaw;
-        private System.Windows.Forms.ErrorProvider ErrorProvider;
+        public System.Windows.Forms.ErrorProvider ErrorProvider;
     }
 }
 

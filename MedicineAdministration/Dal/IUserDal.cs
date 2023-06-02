@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedicineAdministration.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace MedicineAdministration.Dal
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        int insert(User user);
+        int insert(User  user);
         /// <summary>
         /// 查询用户
         /// </summary>
